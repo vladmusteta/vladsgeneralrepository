@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: glances
+  namespace: home-automation
+spec:
+  selector:
+    app: glances
+  ports:
+    - name: http
+      port: 61210
+      targetPort: 61210
+      nodePort: 31210
+  type: NodePort
