@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: kutt-db-pvc
+  namespace: urlshort
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi  # This must be the same or less than the PV size
+  storageClassName: standard  # Make sure this matches the PV storage class

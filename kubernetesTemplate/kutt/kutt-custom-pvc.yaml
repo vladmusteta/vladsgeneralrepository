@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: kutt-custom-pvc
+  namespace: urlshort
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi  # This must match the size defined in the PV
+  storageClassName: standard  # Ensure this matches the PV storage class

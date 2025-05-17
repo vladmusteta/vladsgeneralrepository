@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kutt-config
+  namespace: urlshort
+data:
+  PORT: "3000"
+  SITE_NAME: "Kutt URL Shortener"
+  DEFAULT_DOMAIN: "kutt.vladsdomain.live"
+  JWT_SECRET: "ENCRYPT_SOME"
+  DB_CLIENT: "better-sqlite3"
+  DB_FILENAME: "db/data"
+  REDIS_ENABLED: "true"
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
+  REDIS_PASSWORD: ""
+  REDIS_DB: "0"
+  DISALLOW_REGISTRATION: "false"
+  DISALLOW_ANONYMOUS_LINKS: "false"
+  TRUST_PROXY: "true"
+  CUSTOM_DOMAIN_USE_HTTPS: "false"
+  MAIL_ENABLED: "true"
+  MAIL_HOST: "postfix.smtp.svc.cluster.local"
+  MAIL_PORT: "25"
+  MAIL_SECURE: "false"
+  MAIL_USER: ""
+  MAIL_PASSWORD: ""
+  MAIL_FROM: "kutt@vladsdomain.live"
+  ENABLE_RATE_LIMIT: "false"
+  CONTACT_EMAIL: "vladko2050@gmail.com"
+  REPORT_EMAIL: "vladko2050@gmail.com"

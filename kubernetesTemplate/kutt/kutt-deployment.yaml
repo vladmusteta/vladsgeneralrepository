@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kutt-server
+  namespace: urlshort
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kutt
+  template:
+    metadata:
+      labels:
+        app: kutt
+    spec:
+      initContainers:
+        - name: migrate
+          image: kutt/kutt
+          command: ["npm", "run", "migrate"]  # Run the migrations before the main container starts
+          envFrom:
+            - configMapRef:
+                name: kutt-config
+      containers:
+        - name: server
+          image: kutt/kutt
+          envFrom:
+            - configMapRef:
+                name: kutt-config
+          volumeMounts:
+            - name: db-data-sqlite
+              mountPath: /var/lib/kutt
+            - name: custom
+              mountPath: /kutt/custom
+          ports:
+            - containerPort: 3000
+      volumes:
+        - name: db-data-sqlite
+          persistentVolumeClaim:
+            claimName: kutt-db-pvc
+        - name: custom
+          persistentVolumeClaim:
+            claimName: kutt-custom-pvc
+

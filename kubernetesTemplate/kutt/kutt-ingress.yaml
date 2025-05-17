@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kutt-ingress
+  namespace: urlshort
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: vladsdomain.live
+      http:
+        paths:
+          - path: /kutt-server
+            pathType: Prefix
+            backend:
+              service:
+                name: kutt-server
+                port:
+                  number: 80
