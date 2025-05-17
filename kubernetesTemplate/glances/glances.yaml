@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: glances
+  namespace: home-automation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: glances
+  template:
+    metadata:
+      labels:
+        app: glances
+    spec:
+      hostNetwork: true
+      containers:
+        - name: glances
+          image: nicolargo/glances:latest
+          command: ["glances", "-w", "--bind", "0.0.0.0", "--port", "61210"]
+          ports:
+            - containerPort: 61210
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - mountPath: /proc
+              name: proc
+            - mountPath: /sys
+              name: sys
+            - mountPath: /etc
+              name: etc
+      volumes:
+        - name: proc
+          hostPath:
+            path: /proc
+        - name: sys
+          hostPath:
+            path: /sys
+        - name: etc
+          hostPath:
+            path: /etc
+

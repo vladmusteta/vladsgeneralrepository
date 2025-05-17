@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: immich-server
+  namespace: photos-videos
+  labels:
+    app: immich-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: immich-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: immich-server
+    spec:
+      containers:
+        - name: immich-server
+          image: ghcr.io/immich-app/immich-server:release
+          ports:
+            - containerPort: 2283
+          envFrom:
+            - configMapRef:
+                name: immich-env
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: immich-env
+                  key: DB_PASSWORD
+          livenessProbe:
+            httpGet:
+              path: /server/ping
+              port: 2283
+            initialDelaySeconds: 10
+            periodSeconds: 120
+            failureThreshold: 10
+          readinessProbe:
+            httpGet:
+              path: /server/ping
+              port: 2283
+            initialDelaySeconds: 10
+            periodSeconds: 120
+            failureThreshold: 10
+          volumeMounts:
+            - mountPath: /usr/src/app/upload
+              name: library
+              subPath: library
+          securityContext:
+            runAsUser: 0
+      volumes:
+        - name: library
+          persistentVolumeClaim:
+            claimName: immich-library-pvc
+      securityContext:
+        fsGroup: 0
+

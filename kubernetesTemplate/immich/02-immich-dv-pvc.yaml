@@ -1,0 +1,15 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: immich-db-pvc
+  namespace: photos-videos
+  labels:
+    app: immich
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi  # Match the PV's capacity of 10Gi
+  volumeName: immich-db-pv  # Bind explicitly to the PV created above
+  storageClassName: ''
