@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: kutt-custom-pv
+  namespace: urlshort
+spec:
+  capacity:
+    storage: 1Gi  # Adjust the size as needed
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain  # 'Retain' or 'Delete', based on your preference
+  storageClassName: standard  # Ensure this matches your environment's storage class
+  hostPath:
+    path: /home/k8svolumes/kutt/mounted_storage/custom  # Directory on the host for persistent data

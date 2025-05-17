@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postfix
+  namespace: smtp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postfix
+  template:
+    metadata:
+      labels:
+        app: postfix
+    spec:
+      containers:
+        - name: postfix
+          image: boky/postfix:latest
+          ports:
+            - containerPort: 25
+          env:
+            - name: MAIL_DOMAIN
+              value: "vladsdomain.live"
+            - name: RELAYHOST
+              value: "[smtp.gmail.com]:587"
+            - name: RELAYHOST_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: smtp-secrets
+                  key: smtp-username
+            - name: RELAYHOST_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: smtp-secrets
+                  key: smtp-password
+            - name: SMTP_USE_TLS
+              value: "yes"
+            - name: SMTP_TLS_CAFILE
+              value: "/etc/ssl/certs/ca-certificates.crt"
+            - name: ALLOWED_SENDER_DOMAINS
+              value: "vladsdomain.live"
+            - name: RELAY_NETWORKS
+              value: "10.0.0.0/8 127.0.0.0/8 10.244.0.0/16"
