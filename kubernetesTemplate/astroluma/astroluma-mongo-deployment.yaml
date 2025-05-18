@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: astroluma-mongo
+  namespace: dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: astroluma-mongo
+  template:
+    metadata:
+      labels:
+        app: astroluma-mongo
+    spec:
+      containers:
+        - name: mongodb
+          image: mongo:6.0
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongo-data
+              mountPath: /data/db
+      volumes:
+        - name: mongo-data
+          hostPath:
+            path: /home/k8svolumes/astroluma/mounted_volume/mongo
+            type: DirectoryOrCreate

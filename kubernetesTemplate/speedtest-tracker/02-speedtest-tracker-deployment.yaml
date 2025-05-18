@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: speedtest-tracker
+  namespace: monitoring
+  labels:
+    app: speedtest-tracker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: speedtest-tracker
+  template:
+    metadata:
+      labels:
+        app: speedtest-tracker
+    spec:
+      containers:
+        - name: speedtest-tracker
+          image: lscr.io/linuxserver/speedtest-tracker:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Etc/UTC"
+            - name: OOKLA_EULA_GDPR
+              value: "true"
+            - name: DB_CONNECTION
+              value: "sqlite"
+            - name: DB_DATABASE
+              value: "/config/database.sqlite"
+            - name: APP_DEBUG
+              value: "true"
+            # Optional: ensure foreign keys are enforced
+            - name: DB_FOREIGN_KEYS
+              value: "true"
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: speedtest-tracker-secret
+                  key: APP_KEY
+          volumeMounts:
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: speedtest-tracker-pvc

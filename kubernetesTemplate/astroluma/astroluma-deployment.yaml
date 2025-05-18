@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: astroluma
+  namespace: dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: astroluma
+  template:
+    metadata:
+      labels:
+        app: astroluma
+    spec:
+      containers:
+        - name: astroluma
+          image: sanjeet990/astroluma:latest
+          env:
+            - name: PORT
+              value: "8000"
+            - name: NODE_ENV
+              value: "production"
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: astroluma-secret
+                  key: secret-key
+            - name: MONGODB_URI
+              value: "mongodb://astroluma-mongo.dashboard.svc.cluster.local:27017/astroluma"
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - name: uploads-data
+              mountPath: /app/storage/uploads
+      volumes:
+        - name: uploads-data
+          hostPath:
+            path: /home/k8svolumes/astroluma/mounted_volume/uploads
+            type: DirectoryOrCreate
