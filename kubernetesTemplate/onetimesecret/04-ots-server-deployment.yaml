@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ots-server
+  namespace: communication
+  labels:
+    app: ots-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ots-server
+  template:
+    metadata:
+      labels:
+        app: ots-server
+    spec:
+      containers:
+      - name: onetimesecret
+        image: ghcr.io/onetimesecret/onetimesecret:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: REDIS_URL
+          value: "redis://ots-redis.communication.svc.cluster.local:6379/0"
+        - name: SECRET
+          valueFrom:
+            secretKeyRef:
+              name: ots-config
+              key: SECRET
+        - name: HOST
+          value: "secret.vladsdomain.live"
+        - name: SSL
+          value: "true"
+        - name: RACK_ENV
+          value: "production"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
