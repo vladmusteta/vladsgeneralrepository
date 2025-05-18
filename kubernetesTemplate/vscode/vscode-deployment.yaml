@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vscode
+  namespace: vscode
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vscode
+  template:
+    metadata:
+      labels:
+        app: vscode
+    spec:
+      securityContext:  # <-- pod-level
+        fsGroup: 1002    # <-- correct location
+      containers:
+        - name: code-server
+          image: codercom/code-server:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: vscode-password
+                  key: PASSWORD
+          securityContext:  # <-- container-level
+            runAsUser: 1000
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+          volumeMounts:
+            - name: vscode-vol
+              mountPath: /home/coder/project
+            - name: bashrc-config
+              mountPath: /home/coder/.bashrc
+              subPath: .bashrc
+            - name: vscode-data
+              mountPath: /home/coder/.local/share/code-server
+      volumes:
+        - name: vscode-vol
+          persistentVolumeClaim:
+            claimName: vscode-pvc
+        - name: bashrc-config
+          configMap:
+            name: vscode-bashrc
+        - name: vscode-data
+          persistentVolumeClaim:
+            claimName: vscode-code-server-pvc
+
