@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: romm
+  namespace: romm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: romm
+  template:
+    metadata:
+      labels:
+        app: romm
+    spec:
+      containers:
+        - name: romm
+          image: rommapp/romm:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              value: mariadb
+            - name: DB_NAME
+              value: romm
+            - name: DB_USER
+              value: romm
+            - name: DB_PASSWD
+              value: romm
+            - name: ROMM_AUTH_SECRET_KEY
+              value: ""
+            - name: IGDB_CLIENT_ID
+              value: ""
+            - name: IGDB_CLIENT_SECRET
+              value: ""
+            - name: SCREENSCRAPER_USER
+              value: ""
+            - name: SCREENSCRAPER_PASSWORD
+              value: ""
+            - name: STEAMGRIDDB_API_KEY
+              value: ""
+          volumeMounts:
+            - name: romm-resources
+              mountPath: /romm/resources
+            - name: romm-redis-data
+              mountPath: /redis-data
+            - name: romm-library
+              mountPath: /romm/library
+            - name: romm-assets
+              mountPath: /romm/assets
+            - name: romm-config
+              mountPath: /romm/config
+      volumes:
+        - name: romm-resources
+          emptyDir: {}
+        - name: romm-redis-data
+          emptyDir: {}
+        - name: romm-library
+          hostPath:
+            path: /home/k8svolumes/romm/library
+        - name: romm-assets
+          hostPath:
+            path: /home/k8svolumes/romm/assets
+        - name: romm-config
+          hostPath:
+            path: /home/k8svolumes/romm/config
+
