@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: romm
+  namespace: romm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: romm
+  template:
+    metadata:
+      labels:
+        app: romm
+    spec:
+      containers:
+        - name: romm
+          image: rommapp/romm:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              value: mariadb
+            - name: DB_NAME
+              value: romm
+            - name: DB_USER
+              value: romm
+            - name: DB_PASSWD
+              value: romm
+            # Generate a secret key - this is required for ROMM to work properly
+            - name: ROMM_AUTH_SECRET_KEY
+              value: "040b27e07e6e6849496af08055e84193bf11b8aa59203961fe03c3a1786b9f97"
+            # Optional: IGDB integration (can be left blank if not using)
+            - name: IGDB_CLIENT_ID
+              value: ""
+            - name: IGDB_CLIENT_SECRET
+              value: ""
+            # Optional: ScreenScraper integration (can be left blank if not using)
+            - name: SCREENSCRAPER_USER
+              value: ""
+            - name: SCREENSCRAPER_PASSWORD
+              value: ""
+            # Optional: SteamGridDB integration (can be left blank if not using)
+            - name: STEAMGRIDDB_API_KEY
+              value: ""
+            # Explicitly set the host and port ROMM should bind to
+            - name: ROMM_HOST
+              value: "0.0.0.0"
+            - name: ROMM_PORT
+              value: "8080"
+          volumeMounts:
+            - name: romm-resources
+              mountPath: /romm/resources
+            - name: romm-redis-data
+              mountPath: /redis-data
+            - name: romm-library
+              mountPath: /romm/library
+            - name: romm-assets
+              mountPath: /romm/assets
+            - name: romm-config
+              mountPath: /romm/config
+          # Add health checks
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+      volumes:
+        - name: romm-resources
+          emptyDir: {}
+        - name: romm-redis-data
+          emptyDir: {}
+        - name: romm-library
+          hostPath:
+            path: /home/k8svolumes/romm/library
+        - name: romm-assets
+          hostPath:
+            path: /home/k8svolumes/romm/assets
+        - name: romm-config
+          hostPath:
+            path: /home/k8svolumes/romm/config
