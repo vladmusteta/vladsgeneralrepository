@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingvin
+  namespace: fileshare
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pingvin
+  template:
+    metadata:
+      labels:
+        app: pingvin
+    spec:
+      containers:
+        - name: pingvin
+          image: stonith404/pingvin-share:latest
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: pingvin-storage
+              mountPath: /app/data
+          env:
+            - name: NODE_ENV
+              value: production
+      volumes:
+        - name: pingvin-storage
+          persistentVolumeClaim:
+            claimName: pingvin-pvc
