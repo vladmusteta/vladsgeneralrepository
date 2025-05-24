@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: affine-migration
+  namespace: note-taking
+spec:
+  template:
+    metadata:
+      name: affine-migration
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: migration
+          image: ghcr.io/toeverything/affine-graphql:stable
+          command: ['sh', '-c', 'node ./scripts/self-host-predeploy.js']
+          env:
+            - name: REDIS_SERVER_HOST
+              value: affine-redis
+            - name: DATABASE_URL
+              value: postgresql://affine:affinepassword@affine-postgres:5432/affine
+          volumeMounts:
+            - name: affine-storage
+              mountPath: /root/.affine/storage
+            - name: affine-config
+              mountPath: /root/.affine/config
+      volumes:
+        - name: affine-storage
+          persistentVolumeClaim:
+            claimName: affine-storage-pvc
+        - name: affine-config
+          persistentVolumeClaim:
+            claimName: affine-config-pvc

@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: romm-mariadb-pvc
-  namespace: romm
+  name: affine-storage-pvc
+  namespace: note-taking
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
-  volumeName: romm-mariadb-pv
+      storage: 5Gi
+  storageClassName: manual

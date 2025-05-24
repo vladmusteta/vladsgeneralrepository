@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: affine
+  namespace: note-taking
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: affine
+  template:
+    metadata:
+      labels:
+        app: affine
+    spec:
+      containers:
+        - name: affine
+          image: ghcr.io/toeverything/affine-graphql:stable
+          ports:
+            - containerPort: 3010
+          env:
+            - name: REDIS_SERVER_HOST
+              value: affine-redis
+            - name: DATABASE_URL
+              value: postgresql://affine:affinepassword@affine-postgres:5432/affine
+          volumeMounts:
+            - name: affine-storage
+              mountPath: /root/.affine/storage
+            - name: affine-config
+              mountPath: /root/.affine/config
+      volumes:
+        - name: affine-storage
+          persistentVolumeClaim:
+            claimName: affine-storage-pvc
+        - name: affine-config
+          persistentVolumeClaim:
+            claimName: affine-config-pvc
