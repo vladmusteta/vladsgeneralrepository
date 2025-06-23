@@ -1,0 +1,156 @@
+- name: PC Gigabyte B650 AORUS ELITE AX
+  unique_id: sensor_vladpc_gigabyte_b650_aorus_elite_ax
+  state_topic: windows/ohm/Sensor_VLADPC_Gigabyte_B650_AORUS_ELITE_AX
+- name: PC AMD Ryzen 7 7800X3D Clocks Bus Speed
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_bus_speed
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_Bus_Speed
+- name: PC AMD Ryzen 7 7800X3D Clocks CPU Core num1
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_cpu_core_num1
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_CPU_Core_num1
+- name: PC AMD Ryzen 7 7800X3D Clocks CPU Core num2
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_cpu_core_num2
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_CPU_Core_num2
+- name: PC AMD Ryzen 7 7800X3D Clocks CPU Core num3
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_cpu_core_num3
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_CPU_Core_num3
+- name: PC AMD Ryzen 7 7800X3D Clocks CPU Core num4
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_cpu_core_num4
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_CPU_Core_num4
+- name: PC AMD Ryzen 7 7800X3D Clocks CPU Core num5
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_cpu_core_num5
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_CPU_Core_num5
+- name: PC AMD Ryzen 7 7800X3D Clocks CPU Core num6
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_cpu_core_num6
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_CPU_Core_num6
+- name: PC AMD Ryzen 7 7800X3D Clocks CPU Core num7
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_cpu_core_num7
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_CPU_Core_num7
+- name: PC AMD Ryzen 7 7800X3D Clocks CPU Core num8
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_cpu_core_num8
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_CPU_Core_num8
+- name: PC AMD Ryzen 7 7800X3D Temperatures CPU Package
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_temperatures_cpu_package
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Temperatures_CPU_Package
+- name: PC AMD Ryzen 7 7800X3D Load CPU Total
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_total
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Total
+- name: PC AMD Ryzen 7 7800X3D Load CPU Core num1
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_core_num1
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Core_num1
+- name: PC AMD Ryzen 7 7800X3D Load CPU Core num2
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_core_num2
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Core_num2
+- name: PC AMD Ryzen 7 7800X3D Load CPU Core num3
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_core_num3
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Core_num3
+- name: PC AMD Ryzen 7 7800X3D Load CPU Core num4
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_core_num4
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Core_num4
+- name: PC AMD Ryzen 7 7800X3D Load CPU Core num5
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_core_num5
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Core_num5
+- name: PC AMD Ryzen 7 7800X3D Load CPU Core num6
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_core_num6
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Core_num6
+- name: PC AMD Ryzen 7 7800X3D Load CPU Core num7
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_core_num7
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Core_num7
+- name: PC AMD Ryzen 7 7800X3D Load CPU Core num8
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_core_num8
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Core_num8
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Package
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_package
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Package
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Cores
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_cores
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Cores
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Core num1
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_core_num1
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Core_num1
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Core num2
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_core_num2
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Core_num2
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Core num3
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_core_num3
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Core_num3
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Core num4
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_core_num4
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Core_num4
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Core num5
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_core_num5
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Core_num5
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Core num6
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_core_num6
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Core_num6
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Core num7
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_core_num7
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Core_num7
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Core num8
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_core_num8
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Core_num8
+- name: PC Generic Memory Load Memory
+  unique_id: sensor_vladpc_generic_memory_load_memory
+  state_topic: windows/ohm/Sensor_VLADPC_Generic_Memory_Load_Memory
+- name: PC Generic Memory Data Used Memory
+  unique_id: sensor_vladpc_generic_memory_data_used_memory
+  state_topic: windows/ohm/Sensor_VLADPC_Generic_Memory_Data_Used_Memory
+- name: PC Generic Memory Data Available Memory
+  unique_id: sensor_vladpc_generic_memory_data_available_memory
+  state_topic: windows/ohm/Sensor_VLADPC_Generic_Memory_Data_Available_Memory
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Clocks GPU Core
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_clocks_gpu_core
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Clocks_GPU_Core
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Clocks GPU Memory
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_clocks_gpu_memory
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Clocks_GPU_Memory
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Clocks GPU Shader
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_clocks_gpu_shader
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Clocks_GPU_Shader
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Temperatures GPU Core
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_temperatures_gpu_core
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Temperatures_GPU_Core
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Load GPU Core
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_load_gpu_core
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Load_GPU_Core
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Load GPU Frame Buffer
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_load_gpu_frame_buffer
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Load_GPU_Frame_Buffer
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Load GPU Video Engine
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_load_gpu_video_engine
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Load_GPU_Video_Engine
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Load GPU Bus Interface
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_load_gpu_bus_interface
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Load_GPU_Bus_Interface
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Load GPU Memory
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_load_gpu_memory
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Load_GPU_Memory
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Fans GPU
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_fans_gpu
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Fans_GPU
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Controls GPU Fan
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_controls_gpu_fan
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Controls_GPU_Fan
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Powers GPU Power
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_powers_gpu_power
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Powers_GPU_Power
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Data GPU Memory Free
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_data_gpu_memory_free
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Data_GPU_Memory_Free
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Data GPU Memory Used
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_data_gpu_memory_used
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Data_GPU_Memory_Used
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Data GPU Memory Total
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_data_gpu_memory_total
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Data_GPU_Memory_Total
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Throughput GPU PCIE Rx
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_throughput_gpu_pcie_rx
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Throughput_GPU_PCIE_Rx
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Throughput GPU PCIE Tx
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_throughput_gpu_pcie_tx
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Throughput_GPU_PCIE_Tx
+- name: PC AMD Radeon Graphics
+  unique_id: sensor_vladpc_amd_radeon_graphics
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Radeon_Graphics
+- name: PC Generic Hard Disk Load Used Space
+  unique_id: sensor_vladpc_generic_hard_disk_load_used_space
+  state_topic: windows/ohm/Sensor_VLADPC_Generic_Hard_Disk_Load_Used_Space
