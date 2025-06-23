@@ -1,0 +1,13 @@
+[Unit]
+Description=Kubernetes MQTT Monitor
+After=network.target
+
+[Service]
+Type=simple
+User=YOUR_USER
+WorkingDirectory=/home/YOUR_USER/k8smon_venv
+ExecStart=/home/YOUR_USER/k8smon_venv/bin/python3 /home/YOUR_USER/k8s_mqtt_monitor.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
