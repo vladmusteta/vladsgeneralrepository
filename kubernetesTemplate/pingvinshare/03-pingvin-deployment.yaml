@@ -20,7 +20,7 @@ spec:
             - containerPort: 3000
           volumeMounts:
             - name: pingvin-storage
-              mountPath: /app/data
+              mountPath: /opt/app/backend/data
           env:
             - name: NODE_ENV
               value: production

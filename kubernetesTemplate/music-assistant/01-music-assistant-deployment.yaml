@@ -37,5 +37,5 @@ spec:
       volumes:
         - name: music-assistant-data
           hostPath:
-            path: /path/to/your/volume
+            path: /home/k8svolumes/music-assistant/music-assistant-server/data
             type: DirectoryOrCreate

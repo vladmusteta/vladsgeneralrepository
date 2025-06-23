@@ -11,4 +11,4 @@ spec:
   storageClassName: manual
   volumeMode: Filesystem
   hostPath:
-    path: /home/k8svolumes/filebrowser/mounted_storage
+    path: /home/k8svolumes

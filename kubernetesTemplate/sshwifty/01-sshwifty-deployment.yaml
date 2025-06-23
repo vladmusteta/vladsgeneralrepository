@@ -14,14 +14,16 @@ spec:
         app: sshwifty
     spec:
       hostAliases:
-      - ip: "192.168.100.50"
-        hostnames:
-        - "laptop.vladsdomain.live"
+        - ip: "192.168.100.50"
+          hostnames:
+            - "laptop.vladsdomain.live"
       containers:
-      - name: sshwifty
-        image: niruix/sshwifty:latest
-        ports:
-        - containerPort: 8182
-        env:
-        - name: SSHWIFTY_SETTINGS__LISTEN
-          value: "0.0.0.0:8182"
+        - name: sshwifty
+          image: niruix/sshwifty:latest
+          ports:
+            - containerPort: 8182
+          env:
+            - name: SSHWIFTY_SETTINGS__LISTEN
+              value: "0.0.0.0:8182"
+            - name: TERM
+              value: "xterm-256color"
