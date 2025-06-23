@@ -19,12 +19,30 @@ This project containerizes an external evaluation API and deploys it to Kubernet
 
 ### 1. Application Development
 Created the core API service and web interface:
-- Built `external-eval-api.js` with the main API endpoints
+- Built `external-eval-api.js` with the main API endpoints using `nano external-eval-api.js`
+- Initialized Node.js project: `npm init -y`  # Create package.json with default settings
+- Installed dependencies: `npm install express cookie-parser`  # Add web server and cookie handling
 - Designed HTML templates for user-facing pages (`challenge.html`, `access_required.html`)
 
 ### 2. Containerization
 - Wrote `Dockerfile` to package the application
 - Configured appropriate base image and dependencies
+
+#### Docker Testing & Deployment
+Local testing:
+```bash
+docker build -t external-eval-api:latest .  # Build container image from Dockerfile
+docker run -p 3000:3000 external-eval-api:latest  # Run container and map port 3000
+docker ps  # List currently running containers
+docker stop CONTAINER_NAME  # Stop the running container after testing
+```
+
+Push to Docker Hub:
+```bash
+docker login  # Authenticate with Docker Hub credentials
+docker tag external-eval-api:latest vladko2050/external-eval-api:latest  # Tag image for registry
+docker push vladko2050/external-eval-api:latest  # Upload image to Docker Hub
+```
 
 ### 3. Kubernetes Setup
 - Created Kubernetes YAML manifests for deployment and services
