@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: external-eval-api
+  namespace: external-eval
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: external-eval-api
+  template:
+    metadata:
+      labels:
+        app: external-eval-api
+    spec:
+      containers:
+      - name: external-eval-api
+        image: vladko2050/external-eval-api:latest
+        ports:
+        - containerPort: 3000

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Challenge - PDF Tools</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+      }
+
+      .fruit-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('https://shoptextile.ro/wp-content/uploads/2024/03/IMG_9422.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .content-overlay {
+        background-color: rgba(255, 255, 255, 0.6);
+        padding: 60px;
+        border-radius: 30px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.7);
+        max-width: 500px;
+        width: 90%;
+      }
+
+      .icon {
+        font-size: 60px;
+        margin-bottom: 20px;
+        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+      }
+
+      h1 {
+        color: #ff6347;
+        font-size: 28px;
+        margin-bottom: 30px;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9);
+        letter-spacing: -0.5px;
+      }
+
+      .question {
+        color: #333;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid rgba(255, 99, 71, 0.3);
+        border-radius: 8px;
+        font-size: 16px;
+        margin-bottom: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        transition: all 0.3s ease;
+      }
+
+      input[type="text"]:focus {
+        outline: none;
+        border-color: #ff6347;
+        box-shadow: 0 0 10px rgba(255, 99, 71, 0.3);
+        background: rgba(255, 255, 255, 1);
+      }
+
+      input[type="text"]::placeholder {
+        color: #999;
+        font-style: italic;
+      }
+
+      button {
+        background: linear-gradient(135deg, #ff9800, #ff6347);
+        color: white;
+        border: none;
+        padding: 16px 32px;
+        font-size: 18px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+        width: 100%;
+      }
+
+      button:hover {
+        background: linear-gradient(135deg, #e68900, #e5533d);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(255, 152, 0, 0.5);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      /* Mobile adjustments */
+      @media (max-width: 768px) {
+        .content-overlay {
+          padding: 40px 30px;
+          margin: 20px;
+          max-width: none;
+        }
+
+        h1 {
+          font-size: 24px;
+        }
+
+        button {
+          padding: 14px 28px;
+          font-size: 16px;
+        }
+
+        .icon {
+          font-size: 50px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .content-overlay {
+          padding: 30px 20px;
+          margin: 15px;
+          border-radius: 20px;
+        }
+
+        h1 {
+          font-size: 22px;
+        }
+
+        button {
+          padding: 12px 24px;
+          font-size: 15px;
+        }
+
+        .icon {
+          font-size: 45px;
+        }
+
+        input[type="text"] {
+          padding: 10px 14px;
+          font-size: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fruit-bg">
+      <div class="content-overlay">
+        <div class="icon">🍅</div>
+
+        <h1>Answer the questions to enter</h1>
+
+        <form method="POST" action="/challenge">
+          <!-- Hidden field to preserve return URL -->
+          <input type="hidden" name="return" id="returnUrl" />
+
+          <div class="form-group">
+            <div class="question">What is my favourite color?</div>
+            <input name="answer1" type="text" autocomplete="off" placeholder="Enter color" required />
+          </div>
+
+          <div class="form-group">
+            <div class="question">What is my favourite fruit?</div>
+            <input name="answer2" type="text" autocomplete="off" placeholder="Enter fruit" required />
+          </div>
+
+          <button type="submit">Submit Answers</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // Get return URL from query parameter and set it in the hidden field
+      const urlParams = new URLSearchParams(window.location.search);
+      const returnUrl = urlParams.get('return') || 'https://pdf.vladsdomain.live/';
+      document.getElementById('returnUrl').value = returnUrl;
+    </script>
+  </body>
+</html>

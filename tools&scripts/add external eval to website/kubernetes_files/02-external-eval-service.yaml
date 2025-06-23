@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: external-eval-api-service
+  namespace: external-eval
+spec:
+  type: NodePort
+  selector:
+    app: external-eval-api
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 31000 # You can choose a port between 30000-32767

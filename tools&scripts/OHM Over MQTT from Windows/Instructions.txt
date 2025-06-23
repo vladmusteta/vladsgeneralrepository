@@ -1,7 +1,0 @@
-# Place the mqtt_sensors.yaml file in the home assistant folder
-
-# For the export_ohm_to_mqtt.ps1 I have scheduled a Windows Task Scheduler task as follows (The task can also be imported from OHM to MQTT Export.xml )
-
-Trigger -> On a schedule -> Daily -> Recur every 1 days -> Repeat task every 1 minute for a duration of 1 day -> Enable
-Action -> Start a program -> Program/script: powershell.exe -> Add arguments: -ExecutionPolicy Bypass -File "A:\Apps\OpenHardwareMonitor\export_ohm_to_mqtt.ps1"
-Settings -> Allow task to be run on demand -> If the task fails, restart every 1 minute (up to 3 times) -> Stop the task if it runs longer than 5 minutes -> If the running task does not end when requested, force it to stop
