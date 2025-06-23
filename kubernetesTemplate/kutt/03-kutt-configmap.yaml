@@ -7,7 +7,7 @@ data:
   PORT: "3000"
   SITE_NAME: "Kutt URL Shortener"
   DEFAULT_DOMAIN: "kutt.vladsdomain.live"
-  JWT_SECRET: "ENCRYPT_SOME"
+  JWT_SECRET: "$2a$12$FWn.72C1VyDSvX7MEB8LBO2nMW9ILw7QaMzW2mUA6MyAchbPs39Um"
   DB_CLIENT: "better-sqlite3"
   DB_FILENAME: "db/data"
   REDIS_ENABLED: "true"
