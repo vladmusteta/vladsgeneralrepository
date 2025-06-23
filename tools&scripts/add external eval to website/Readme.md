@@ -12,7 +12,7 @@ This project containerizes an external evaluation API and deploys it to Kubernet
 - `external-eval-api.js` - Main API application logic
 - `views/challenge.html` - Challenge page template
 - `views/access_required.html` - Access control page template
-- `kubernetes_files/*.yaml` - Kubernetes deployment manifests
+- `kubernetes/` - Kubernetes deployment manifests
 - `cloudflare-worker.js` - Cloudflare worker for routing/middleware
 
 ## Deployment Steps
@@ -38,7 +38,28 @@ Created the core API service and web interface:
 
 ## Usage
 
-[Add specific instructions for accessing the API or any configuration needed]
+### Challenge Configuration
+
+Update challenge questions, answers, retry limits, and timeout settings:
+
+```bash
+./updateChallenge.sh
+```
+
+This runs `node setup-challenge.js` to dynamically modify challenge parameters.
+
+### Docker Deployment
+
+Build and deploy new container versions:
+
+```bash
+./updateDocker.sh
+```
+
+This script:
+- Builds the Docker image: `docker build -t vladko2050/external-eval-api:latest .`
+- Pushes to registry: `docker push vladko2050/external-eval-api:latest`
+- Restarts Kubernetes deployment: `kubectl rollout restart deployment/external-eval-api -n external-eval`
 
 ## Architecture
 
