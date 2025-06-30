@@ -13,8 +13,10 @@ spec:
       labels:
         app: vscode
     spec:
-      securityContext:       # ✅ Pod-level security context
-        fsGroup: 1002         # ✅ Ensures group access (to vscode-owned dirs)
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
       containers:
         - name: code-server
           image: codercom/code-server:latest
@@ -26,12 +28,14 @@ spec:
                 secretKeyRef:
                   name: vscode-password
                   key: PASSWORD
-          securityContext:   # ✅ Container-level
-            runAsUser: 1000   # ✅ Match the UID for correct file ownership
-            allowPrivilegeEscalation: false
+          securityContext:
+            runAsUser: 0
+            privileged: true
+            allowPrivilegeEscalation: true
             capabilities:
-              drop:
-                - ALL
+              add:
+                - SYS_ADMIN
+              # Remove the drop: ALL to allow capabilities
           volumeMounts:
             - name: vscode-vol
               mountPath: /home/coder/project
@@ -39,7 +43,8 @@ spec:
               mountPath: /home/coder/.bashrc
               subPath: .bashrc
             - name: vscode-data
-              mountPath: /home/coder/.local/share/code-server
+              # 👇 CHANGE THIS LINE 👇
+              mountPath: /root/.local/share/code-server # <--- Change this from /home/coder/.local/share/code-server
       volumes:
         - name: vscode-vol
           persistentVolumeClaim:
@@ -50,4 +55,3 @@ spec:
         - name: vscode-data
           persistentVolumeClaim:
             claimName: vscode-code-server-pvc
-
