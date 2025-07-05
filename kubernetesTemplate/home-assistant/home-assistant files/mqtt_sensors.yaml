@@ -1,0 +1,518 @@
+- name: PC Gigabyte B650 AORUS ELITE AX
+  unique_id: sensor_vladpc_gigabyte_b650_aorus_elite_ax
+  state_topic: windows/ohm/Sensor_VLADPC_Gigabyte_B650_AORUS_ELITE_AX
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Clocks Bus Speed
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_bus_speed
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_Bus_Speed
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Clocks CPU Core 1
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_cpu_core_1
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_CPU_Core_1
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Clocks CPU Core 2
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_cpu_core_2
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_CPU_Core_2
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Clocks CPU Core 3
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_cpu_core_3
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_CPU_Core_3
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Clocks CPU Core 4
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_cpu_core_4
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_CPU_Core_4
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Clocks CPU Core 5
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_cpu_core_5
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_CPU_Core_5
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Clocks CPU Core 6
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_cpu_core_6
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_CPU_Core_6
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Clocks CPU Core 7
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_cpu_core_7
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_CPU_Core_7
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Clocks CPU Core 8
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_clocks_cpu_core_8
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Clocks_CPU_Core_8
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Temperatures CPU Package
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_temperatures_cpu_package
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Temperatures_CPU_Package
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Load CPU Total
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_total
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Total
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Load CPU Core 1
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_core_1
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Core_1
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Load CPU Core 2
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_core_2
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Core_2
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Load CPU Core 3
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_core_3
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Core_3
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Load CPU Core 4
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_core_4
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Core_4
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Load CPU Core 5
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_core_5
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Core_5
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Load CPU Core 6
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_core_6
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Core_6
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Load CPU Core 7
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_core_7
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Core_7
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Load CPU Core 8
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_load_cpu_core_8
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Load_CPU_Core_8
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Package
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_package
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Package
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Cores
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_cores
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Cores
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Core 1
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_core_1
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Core_1
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Core 2
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_core_2
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Core_2
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Core 3
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_core_3
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Core_3
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Core 4
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_core_4
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Core_4
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Core 5
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_core_5
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Core_5
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Core 6
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_core_6
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Core_6
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Core 7
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_core_7
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Core_7
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Ryzen 7 7800X3D Powers CPU Core 8
+  unique_id: sensor_vladpc_amd_ryzen_7_7800x3d_powers_cpu_core_8
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Ryzen_7_7800X3D_Powers_CPU_Core_8
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC Generic Memory Load Memory
+  unique_id: sensor_vladpc_generic_memory_load_memory
+  state_topic: windows/ohm/Sensor_VLADPC_Generic_Memory_Load_Memory
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC Generic Memory Data Used Memory
+  unique_id: sensor_vladpc_generic_memory_data_used_memory
+  state_topic: windows/ohm/Sensor_VLADPC_Generic_Memory_Data_Used_Memory
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC Generic Memory Data Available Memory
+  unique_id: sensor_vladpc_generic_memory_data_available_memory
+  state_topic: windows/ohm/Sensor_VLADPC_Generic_Memory_Data_Available_Memory
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Clocks GPU Core
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_clocks_gpu_core
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Clocks_GPU_Core
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Clocks GPU Memory
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_clocks_gpu_memory
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Clocks_GPU_Memory
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Clocks GPU Shader
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_clocks_gpu_shader
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Clocks_GPU_Shader
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Temperatures GPU Core
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_temperatures_gpu_core
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Temperatures_GPU_Core
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Load GPU Core
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_load_gpu_core
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Load_GPU_Core
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Load GPU Frame Buffer
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_load_gpu_frame_buffer
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Load_GPU_Frame_Buffer
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Load GPU Video Engine
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_load_gpu_video_engine
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Load_GPU_Video_Engine
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Load GPU Bus Interface
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_load_gpu_bus_interface
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Load_GPU_Bus_Interface
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Load GPU Memory
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_load_gpu_memory
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Load_GPU_Memory
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Fans GPU
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_fans_gpu
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Fans_GPU
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Controls GPU Fan
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_controls_gpu_fan
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Controls_GPU_Fan
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Powers GPU Power
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_powers_gpu_power
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Powers_GPU_Power
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Data GPU Memory Free
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_data_gpu_memory_free
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Data_GPU_Memory_Free
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Data GPU Memory Used
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_data_gpu_memory_used
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Data_GPU_Memory_Used
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Data GPU Memory Total
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_data_gpu_memory_total
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Data_GPU_Memory_Total
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Throughput GPU PCIE Rx
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_throughput_gpu_pcie_rx
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Throughput_GPU_PCIE_Rx
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC NVIDIA NVIDIA GeForce RTX 4070 Ti Throughput GPU PCIE Tx
+  unique_id: sensor_vladpc_nvidia_nvidia_geforce_rtx_4070_ti_throughput_gpu_pcie_tx
+  state_topic: windows/ohm/Sensor_VLADPC_NVIDIA_NVIDIA_GeForce_RTX_4070_Ti_Throughput_GPU_PCIE_Tx
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC AMD Radeon Graphics
+  unique_id: sensor_vladpc_amd_radeon_graphics
+  state_topic: windows/ohm/Sensor_VLADPC_AMD_Radeon_Graphics
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+- name: PC Generic Hard Disk Load Used Space
+  unique_id: sensor_vladpc_generic_hard_disk_load_used_space
+  state_topic: windows/ohm/Sensor_VLADPC_Generic_Hard_Disk_Load_Used_Space
+  device:
+    identifiers:
+      - vladpc_ohm_over_mqtt
+    name: VladPC OHM Over MQTT
+    manufacturer: Custom
+    model: OpenHardwareMonitor MQTT Exporter
+
+- name: "Audio Bass"
+  unique_id: sensor_audio_analyzer_bass
+  state_topic: "audio/analysis"
+  value_template: "{{ value_json.bass | round(2) }}"
+  unit_of_measurement: "dB"
+  device:
+    identifiers:
+      - audio_analyer_over_mqtt
+    name: Audio Analyzer Over MQTT
+  
+- name: "Audio Mids"
+  unique_id: sensor_audio_analyzer_mids
+  state_topic: "audio/analysis" 
+  value_template: "{{ value_json.mids | round(2) }}"
+  unit_of_measurement: "dB"
+  device:
+    identifiers:
+      - audio_analyer_over_mqtt
+    name: Audio Analyzer Over MQTT
+  
+- name: "Audio Treble"
+  unique_id: sensor_audio_analyzer_treble
+  state_topic: "audio/analysis"
+  value_template: "{{ value_json.treble | round(2) }}"
+  unit_of_measurement: "dB"
+  device:
+    identifiers:
+      - audio_analyer_over_mqtt
+    name: Audio Analyzer Over MQTT
+  
+- name: "Audio Beat"
+  unique_id: sensor_audio_analyzer_beat
+  state_topic: "audio/analysis"
+  value_template: "{{ value_json.beat }}"
+  device:
+    identifiers:
+      - audio_analyer_over_mqtt
+    name: Audio Analyzer Over MQTT
+  
+- name: "Audio Energy"
+  unique_id: sensor_audio_analyzer_energy
+  state_topic: "audio/analysis"
+  value_template: "{{ value_json.energy | round(2) }}"
+  unit_of_measurement: "dB"
+  device:
+    identifiers:
+      - audio_analyer_over_mqtt
+    name: Audio Analyzer Over MQTT
+

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: audio-analyzer
+  namespace: home-automation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: audio-analyzer
+  template:
+    metadata:
+      labels:
+        app: audio-analyzer
+    spec:
+      hostNetwork: true
+      containers:
+        - name: audio-analyzer
+          image: python:3.11-slim
+          command: ["/bin/bash"]
+          args: ["-c", "pip install paho-mqtt numpy && echo 'Packages installed, starting script...' && while true; do python /app/test.py; echo 'Script exited, restarting in 5 seconds...'; sleep 5; done"]
+          volumeMounts:
+            - name: test-script
+              mountPath: /app
+      volumes:
+        - name: test-script
+          configMap:
+            name: audio-analyzer-script
