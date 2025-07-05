@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snapcast-server
+  namespace: home-automation
+  labels:
+    app: snapcast-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: snapcast-server
+  template:
+    metadata:
+      labels:
+        app: snapcast-server
+    spec:
+      hostNetwork: true
+      tolerations:
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: "Exists"
+          effect: "NoSchedule"
+      containers:
+        - name: snapcast-server
+          image: ivdata/snapserver:latest
+          imagePullPolicy: Always
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Europe/Bucharest"
+          ports:
+            - containerPort: 1704
+              name: snapcast
+            - containerPort: 1705
+              name: control
+          volumeMounts:
+            - name: audio-fifo
+              mountPath: /tmp/snapfifo
+          env:
+            - name: START_SNAPSERVER
+              value: "true"
+      volumes:
+        - name: audio-fifo
+          hostPath:
+            path: /tmp/snapfifo
+            type: DirectoryOrCreate
