@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: go-librespot-config-pvc
+  namespace: home-automation
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-storage
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: go-librespot-config-pv
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pulse-cookie-pvc
+  namespace: home-automation
+spec:
+  accessModes:
+    - ReadOnlyMany
+  storageClassName: local-storage
+  resources:
+    requests:
+      storage: 100Mi
+  volumeName: pulse-cookie-pv
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pulse-native-pvc
+  namespace: home-automation
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: local-storage
+  resources:
+    requests:
+      storage: 100Mi
+  volumeName: pulse-native-pv

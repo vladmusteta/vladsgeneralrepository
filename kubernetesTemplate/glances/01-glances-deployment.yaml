@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: glances
-  namespace: home-automation
+  namespace: monitoring
 spec:
   replicas: 1
   selector:
@@ -17,9 +17,9 @@ spec:
       containers:
         - name: glances
           image: nicolargo/glances:latest
-          command: ["glances", "-w", "--bind", "0.0.0.0", "--port", "61210"]
+          command: ["glances", "-w", "--bind", "0.0.0.0", "--port", "61208"]
           ports:
-            - containerPort: 61210
+            - containerPort: 61208
           securityContext:
             privileged: true
           volumeMounts:

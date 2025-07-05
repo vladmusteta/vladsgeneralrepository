@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: go-librespot-config-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  local:
+    path: /home/k8svolumes/go-librespot/mounted_volume/.config/go-librespot
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - localhost.localdomain
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pulse-cookie-pv
+spec:
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadOnlyMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  local:
+    path: /home/k8svolumes/go-librespot/mounted_volume/.config/pulse/cookie
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - localhost.localdomain
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pulse-native-pv
+spec:
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  local:
+    path: /home/k8svolumes/go-librespot/mounted_volume/run/user/1000/pulse/native
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - localhost.localdomain
