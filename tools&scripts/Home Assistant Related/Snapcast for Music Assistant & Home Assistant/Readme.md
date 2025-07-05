@@ -43,14 +43,13 @@ Kubernetes deployment for Snapcast Server - multi-room audio streaming solution.
 ### Installation
 
 1. **Clone this repository**
-```bash
-git clone https://github.com/yourusername/snapcast-kubernetes
-cd snapcast-kubernetes
-```
 
 2. **Deploy Snapcast Server**
 ```bash
-kubectl apply -f snapcast-server-deployment.yaml
+kubectl apply -f 01-snapcast-deployment.yaml
+kubectl apply -f 02-snapcast-configmap.yaml
+kubectl apply -f 03-snapcast-service.yaml
+
 ```
 
 3. **Verify deployment**

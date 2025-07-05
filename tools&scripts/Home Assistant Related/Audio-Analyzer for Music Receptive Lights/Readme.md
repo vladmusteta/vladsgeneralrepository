@@ -44,15 +44,12 @@ Real-time audio frequency analysis for audio-reactive lighting and automation in
 ### Installation
 
 1. **Clone this repository**
-```bash
-git clone https://github.com/yourusername/audio-analyzer-ha
-cd audio-analyzer-ha
-```
 
 2. **Deploy to Kubernetes**
 ```bash
 # Update the MQTT IP in the deployment file
-kubectl apply -f audio-analyzer-deployment.yaml
+kubectl apply -f 01-audio-analyzer-deployment.yaml
+kubectl apply -f 02-audio-analyzer-configmap.yaml
 ```
 
 3. **Add MQTT sensors to Home Assistant**
