@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: seafile
+  namespace: seafile
+spec:
+  selector:
+    app: seafile
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 8000
+    nodePort: 31223
+  - name: https
+    port: 8082
+    targetPort: 8082
+    nodePort: 31224  
+  type: NodePort

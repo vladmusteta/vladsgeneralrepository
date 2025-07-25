@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seafile
+  namespace: seafile
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seafile
+  template:
+    metadata:
+      labels:
+        app: seafile
+    spec:
+      containers:
+      - name: seafile
+        image: seafileltd/seafile-mc:latest
+        command: ["/bin/bash"]
+        args: ["-c", "/scripts/setup.sh && tail -f /dev/null"]
+        env:
+        - name: TIME_ZONE
+          valueFrom:
+            configMapKeyRef:
+              name: seafile-config
+              key: TIME_ZONE
+        - name: SEAFILE_ADMIN_EMAIL
+          valueFrom:
+            configMapKeyRef:
+              name: seafile-config
+              key: SEAFILE_ADMIN_EMAIL
+        - name: SEAFILE_ADMIN_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: seafile-config
+              key: SEAFILE_ADMIN_PASSWORD
+        - name: SEAFILE_SERVER_LETSENCRYPT
+          valueFrom:
+            configMapKeyRef:
+              name: seafile-config
+              key: SEAFILE_SERVER_LETSENCRYPT
+        - name: SEAFILE_SERVER_HOSTNAME
+          valueFrom:
+            configMapKeyRef:
+              name: seafile-config
+              key: SEAFILE_SERVER_HOSTNAME
+        ports:
+        - containerPort: 8000
+        - containerPort: 8082
+        volumeMounts:
+        - name: seafile-data
+          mountPath: /shared
+        - name: setup-script
+          mountPath: /scripts
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "250m"
+        # Temporarily disabled health checks
+        # livenessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 8000
+        #   initialDelaySeconds: 60
+        #   periodSeconds: 30
+        # readinessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 8000
+        #   initialDelaySeconds: 30
+        #   periodSeconds: 10
+      volumes:
+      - name: seafile-data
+        persistentVolumeClaim:
+          claimName: seafile-pvc
+      - name: setup-script
+        configMap:
+          name: seafile-setup-script
+          defaultMode: 0755
