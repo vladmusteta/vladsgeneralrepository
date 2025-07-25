@@ -8,11 +8,152 @@ data:
     #!/bin/bash
     set -e
     
+    echo "=== Starting Seafile Setup Script ==="
     echo "=== Updating Repositories ==="
     apt-get update --fix-missing
-    echo "=== I love Nano. Nano ===> VIM"
-    apt-get install -y nano --fix-missing
-    echo "=== Installing SQLite3 ==="
-    apt-get install -y sqlite3 --fix-missing
-    sqlite3 --version
-    echo "SQLite3 installation completed!"
+    echo "=== Installing required packages ==="
+    apt-get install -y nano sqlite3 net-tools --fix-missing
+    
+    # Debug: Show directory structure
+    echo "=== Checking directory structure ==="
+    ls -la /opt/
+    ls -la /opt/seafile/ || echo "No /opt/seafile directory yet"
+    ls -la /shared/ || echo "No /shared directory"
+    
+    # The seafile-server directory is in /opt/seafile
+    SEAFILE_SERVER_DIR="/opt/seafile/seafile-server-11.0.13"
+    
+    # Verify it exists
+    if [ ! -d "$SEAFILE_SERVER_DIR" ]; then
+        echo "Error: Seafile server directory not found at $SEAFILE_SERVER_DIR"
+        echo "Checking for any seafile-server directory..."
+        SEAFILE_SERVER_DIR=$(find /opt/seafile -name "seafile-server-*" -type d 2>/dev/null | head -1)
+        if [ -z "$SEAFILE_SERVER_DIR" ]; then
+            echo "Error: Could not find any seafile server directory"
+            exit 1
+        fi
+    fi
+    
+    echo "Found Seafile server directory: $SEAFILE_SERVER_DIR"
+    cd "$SEAFILE_SERVER_DIR"
+    
+    # Check if Seafile is already configured
+    # Configuration will be stored in /shared but symlinked to /opt/seafile
+    if [ ! -f /shared/conf/ccnet.conf ]; then
+        echo "=== Running Seafile Setup ==="
+        
+        # Create input file for setup-seafile.sh (using SQLite)
+        cat > /tmp/setup_input.txt << SETUPINPUT
+
+    vladseafile
+    ${SEAFILE_SERVER_HOSTNAME}
+    8082
+    /shared
+
+    SETUPINPUT
+        
+        # Run setup with input redirection
+        ./setup-seafile.sh < /tmp/setup_input.txt
+        
+        echo "=== Seafile setup completed ==="
+        
+        # Clean up
+        rm -f /tmp/setup_input.txt
+    else
+        echo "=== Seafile already configured, skipping setup ==="
+    fi
+    
+    # Create symlinks so config is accessible from both locations
+    echo "=== Setting up configuration symlinks ==="
+    mkdir -p /opt/seafile/conf
+    mkdir -p /shared/conf
+    
+    # Link configuration files if they don't exist in /opt/seafile/conf
+    for conf_file in ccnet.conf seafile.conf seahub_settings.py gunicorn.conf.py; do
+        if [ -f "/shared/conf/$conf_file" ] && [ ! -f "/opt/seafile/conf/$conf_file" ]; then
+            ln -sf "/shared/conf/$conf_file" "/opt/seafile/conf/$conf_file"
+            echo "Linked $conf_file"
+        fi
+    done
+    
+    # Create gunicorn configuration in the correct location
+    echo "=== Creating gunicorn configuration ==="
+    cat > /opt/seafile/conf/gunicorn.conf.py << 'GUNICORNEND'
+    import os
+    daemon = True
+    workers = 3
+    bind = "0.0.0.0:8000"
+    max_requests = 1000
+    preload_app = True
+    timeout = 30
+    raw_env = [
+        "DJANGO_SETTINGS_MODULE=seahub.settings",
+    ]
+    GUNICORNEND
+    
+    # Also copy to shared for persistence
+    cp /opt/seafile/conf/gunicorn.conf.py /shared/conf/gunicorn.conf.py 2>/dev/null || true
+    
+    echo "=== Starting Seafile Services ==="
+    
+    # Start Seafile
+    ./seafile.sh start
+    
+    # Check if admin user needs to be created
+    if [ ! -f /shared/admin-created ]; then
+        echo "=== Creating admin user ==="
+        cat > /tmp/seahub_setup_input.txt << SEAHUBSETUPINPUT
+    $SEAFILE_ADMIN_EMAIL
+    $SEAFILE_ADMIN_PASSWORD
+    $SEAFILE_ADMIN_PASSWORD
+    SEAHUBSETUPINPUT
+        
+        ./seahub.sh start < /tmp/seahub_setup_input.txt
+        touch /shared/admin-created
+        rm -f /tmp/seahub_setup_input.txt
+    else
+        echo "=== Admin user already created, starting Seahub normally ==="
+        ./seahub.sh start
+    fi
+    
+    echo "=== Seafile services started successfully ==="
+    
+    # Update seahub_settings.py with proper configuration
+    echo "=== Verifying seahub_settings.py configuration ==="
+    SEAHUB_SETTINGS="/opt/seafile/conf/seahub_settings.py"
+    
+    if [ -f "$SEAHUB_SETTINGS" ]; then
+        # Check if custom settings already exist
+        if ! grep -q "CSRF_TRUSTED_ORIGINS" "$SEAHUB_SETTINGS"; then
+            echo "=== Updating seahub_settings.py ==="
+            
+            # Update SERVICE_URL
+            sed -i 's|SERVICE_URL = .*|SERVICE_URL = "https://seafile.vladsdomain.live"|' "$SEAHUB_SETTINGS"
+            
+            # Append additional settings
+            cat >> "$SEAHUB_SETTINGS" << 'SEAHUBSETTINGS'
+
+    # Custom settings for domain access
+    ALLOWED_HOSTS = ['*']
+    CSRF_TRUSTED_ORIGINS = ['https://seafile.vladsdomain.live', 'http://192.168.100.50:31223']
+    FILE_SERVER_ROOT = 'https://seafilefiles.vladsdomain.live'
+    SEAHUBSETTINGS
+            
+            # Copy updated settings to shared
+            cp "$SEAHUB_SETTINGS" /shared/conf/seahub_settings.py
+            
+            echo "=== Settings updated, restarting seahub ==="
+            cd "$SEAFILE_SERVER_DIR"
+            ./seahub.sh restart
+        else
+            echo "=== Custom settings already applied ==="
+        fi
+    fi
+    
+    echo "=== Service status ==="
+    netstat -tlnp | grep -E "(8000|8082)" || true
+    
+    echo "=== Setup completed! ==="
+    echo "Seafile is accessible at:"
+    echo "  - http://192.168.100.50:31223 (NodePort)"
+    echo "  - https://seafile.vladsdomain.live (if configured with Ingress)"

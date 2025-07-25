@@ -4,12 +4,8 @@ metadata:
   name: seafile-config
   namespace: seafile
 data:
-  DB_HOST: "mysql"
-  DB_ROOT_PASSWD: "hard_password"
-  DB_HOST_USER: "root"              # Temporarily use root
-  DB_HOST_PASSWD: "hard_password" # Use root password
   TIME_ZONE: "UTC"
-  SEAFILE_ADMIN_EMAIL: "an_admin_mail"
-  SEAFILE_ADMIN_PASSWORD: "some_admin_pass"
-  SEAFILE_SERVER_LETSENCRYPT: "false"
-  SEAFILE_SERVER_HOSTNAME: "seafile.local"
+  SEAFILE_SERVER_HOSTNAME: "seafile.vladsdomain.live"
+  SERVICE_URL: "https://seafile.vladsdomain.live"
+  # For local access during testing
+  NODE_PORT_URL: "http://192.168.100.50:31223"

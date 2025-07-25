@@ -1,248 +1,290 @@
 # Seafile Kubernetes Deployment
 
-A complete Kubernetes deployment configuration for [Seafile](https://www.seafile.com/), a self-hosted file synchronization and sharing platform. This setup provides a Google Drive alternative that you can run on your own infrastructure.
+A complete Kubernetes deployment configuration for Seafile, a self-hosted file synchronization and sharing platform. This setup provides a private cloud storage solution that you can run on your own infrastructure with SQLite backend and automated setup.
 
 ## Features
 
-- **Complete Seafile deployment** with MySQL database backend
-- **Persistent local storage** with configurable mount points
-- **Easy start/stop scripts** for maintenance and resource management
-- **Ingress configuration** for external access
-- **Namespace isolation** for clean organization
-- **Production-ready** with health checks and resource limits
+- Complete Seafile deployment with SQLite database backend
+- Persistent local storage with configurable mount points
+- Automated setup with configuration handling
+- Secure credential management using Kubernetes Secrets
+- External access via NodePort services
+- Namespace isolation for clean organization
+- Cloudflare Tunnel support for secure external access
+- Support for custom domains
 
 ## Prerequisites
 
 - Kubernetes cluster (tested on v1.20+)
-- `kubectl` configured to access your cluster
-- Ingress controller (nginx recommended)
+- kubectl configured to access your cluster
 - Local storage available on at least one node
-- Sufficient storage space for your files
+- Sufficient storage space for your files (100Gi configured by default)
 
 ## Quick Start
 
 ### 1. Clone and Prepare
-
 ```bash
 git clone <your-repo-url>
 cd seafile-k8s
 ```
 
 ### 2. Create Directory Structure
-
 On the node where you want to store data:
-
 ```bash
-sudo mkdir -p /home/k8svolumes/seafile/mounted_volume/mysql
 sudo mkdir -p /home/k8svolumes/seafile/mounted_volume/seafile
-sudo chown -R 999:999 /home/k8svolumes/seafile/mounted_volume/mysql
-sudo chown -R 8000:8000 /home/k8svolumes/seafile/mounted_volume/seafile
+sudo chmod 777 /home/k8svolumes/seafile/mounted_volume/seafile
 ```
 
 ### 3. Configure
 
-**Required changes before deployment:**
+#### Update Configuration Files:
 
-1. **Update node names** in `seafile-mysql-pv.yaml` and `seafile-pv.yaml`:
-   ```bash
-   kubectl get nodes  # Get your node name
-   # Replace "your-node-name" with actual node name
+1. **Update domain/hostname** in `03-seafile-configmap.yaml`:
+   ```yaml
+   SEAFILE_SERVER_HOSTNAME: "seafile.yourdomain.com"
+   SERVICE_URL: "https://seafile.yourdomain.com"
    ```
 
-2. **Generate new passwords** for `mysql-secret.yaml`:
+2. **Create admin credentials secret**:
    ```bash
-   echo -n "your-mysql-root-password" | base64
-   echo -n "your-seafile-db-password" | base64
+   # Create 05-seafile-secret.yaml
+   cat > 05-seafile-secret.yaml << EOF
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: seafile-admin-secret
+     namespace: seafile
+   type: Opaque
+   stringData:
+     SEAFILE_ADMIN_EMAIL: "admin@seafile.local"
+     SEAFILE_ADMIN_PASSWORD: "your-secure-password-here"  # CHANGE THIS!
+   EOF
    ```
-
-3. **Update configuration** in `seafile-configmap.yaml`:
-   - Change `SEAFILE_ADMIN_EMAIL`
-   - Change `SEAFILE_ADMIN_PASSWORD`
-   - Update `SEAFILE_SERVER_HOSTNAME` to your domain
-   - Ensure passwords match those in the secret
-
-4. **Configure ingress** in `seafile-ingress.yaml`:
-   - Change host to your domain
-   - Adjust ingress class if needed
-   - Enable TLS if desired
 
 ### 4. Deploy
 
+Deploy all components:
 ```bash
-# Deploy in order
-kubectl apply -f namespace.yaml
-kubectl apply -f seafile-mysql-pv.yaml
-kubectl apply -f seafile-pv.yaml
-kubectl apply -f seafile-mysql-pvc.yaml
-kubectl apply -f seafile-pvc.yaml
-kubectl apply -f mysql-secret.yaml
-kubectl apply -f mysql-deployment.yaml
-kubectl apply -f mysql-service.yaml
-kubectl apply -f seafile-configmap.yaml
-kubectl apply -f seafile-deployment.yaml
-kubectl apply -f seafile-service.yaml
-kubectl apply -f seafile-ingress.yaml
+# Apply all configurations in order
+kubectl apply -f 00-seafile-ns.yaml
+kubectl apply -f 01-seafile-pvc.yaml
+kubectl apply -f 02-seafile-pv.yaml
+kubectl apply -f 03-seafile-configmap.yaml
+kubectl apply -f 04-seafile-initialrun-configmap.yaml
+kubectl apply -f 05-seafile-deployment.yaml
+kubectl apply -f 06-seafile-service.yaml
+```
+
+Or deploy all at once:
+```bash
+kubectl apply -f .
 ```
 
 ### 5. Verify Deployment
-
 ```bash
 kubectl get pods -n seafile
 kubectl get pvc -n seafile
-kubectl get ingress -n seafile
+kubectl get svc -n seafile
+kubectl logs -f deployment/seafile -n seafile
 ```
-
-## Management Scripts
-
-### Start/Stop Seafile
-
-Make scripts executable:
-```bash
-chmod +x start-seafile.sh stop-seafile.sh
-```
-
-Stop Seafile (scales to 0 replicas):
-```bash
-./stop-seafile.sh
-```
-
-Start Seafile (scales to 1 replica):
-```bash
-./start-seafile.sh
-```
-
-These scripts are useful for:
-- Maintenance windows
-- Saving resources when not in use
-- Clean restarts
 
 ## File Structure
-
 ```
 .
 ├── README.md
-├── namespace.yaml              # Seafile namespace
-├── seafile-mysql-pv.yaml      # MySQL persistent volume
-├── seafile-mysql-pvc.yaml     # MySQL persistent volume claim
-├── mysql-secret.yaml          # Database credentials
-├── mysql-deployment.yaml      # MySQL database deployment
-├── mysql-service.yaml         # MySQL service
-├── seafile-pv.yaml           # Seafile persistent volume
-├── seafile-pvc.yaml          # Seafile persistent volume claim
-├── seafile-configmap.yaml    # Seafile configuration
-├── seafile-deployment.yaml   # Seafile application deployment
-├── seafile-service.yaml      # Seafile service
-├── seafile-ingress.yaml      # External access configuration
-├── start-seafile.sh          # Start script
-└── stop-seafile.sh           # Stop script
+├── 00-seafile-ns.yaml                    # Namespace definition
+├── 01-seafile-pvc.yaml                   # Persistent Volume Claim
+├── 02-seafile-pv.yaml                    # Persistent Volume
+├── 03-seafile-configmap.yaml             # Seafile configuration
+├── 04-seafile-initialrun-configmap.yaml  # Setup and startup script
+├── 05-seafile-deployment.yaml            # Seafile deployment
+└── 06-seafile-service.yaml               # NodePort services
 ```
 
 ## Configuration Details
 
 ### Storage Configuration
-
-- **MySQL data**: `/home/k8svolumes/seafile/mounted_volume/mysql`
 - **Seafile data**: `/home/k8svolumes/seafile/mounted_volume/seafile`
-- **Default MySQL storage**: 10Gi
-- **Default Seafile storage**: 100Gi
-
-Adjust storage sizes in the PV and PVC files as needed.
-
-### Resource Limits
-
-- **MySQL**: 512Mi-1Gi RAM, 250m-500m CPU
-- **Seafile**: 1Gi-2Gi RAM, 500m-1000m CPU
-
-Modify in the deployment files based on your cluster capacity.
+- **Storage size**: 100Gi (adjustable in PV/PVC)
+- **Database**: SQLite3 (stored within Seafile data directory)
 
 ### Network Configuration
+- **Seahub (Web Interface)**: Port 8000 → NodePort 31223
+- **Fileserver**: Port 8082 → NodePort 31224
 
-- **Seafile HTTP**: Port 80
-- **Seafile HTTPS**: Port 443
-- **MySQL**: Port 3306 (internal only)
+### Resource Limits
+- **Memory**: 512Mi (request) / 1Gi (limit)
+- **CPU**: 250m (request) / 500m (limit)
 
 ## Accessing Seafile
 
-1. **Via Ingress**: Access through your configured hostname
-2. **Via Port Forward** (for testing):
-   ```bash
-   kubectl port-forward -n seafile svc/seafile 8080:80
-   # Access at http://localhost:8080
-   ```
+### Via NodePort (Direct Access)
+```bash
+# Get node IP
+kubectl get nodes -o wide
 
-### First Login
+# Access Seafile
+http://NODE-IP:31223  # Web interface
+http://NODE-IP:31224  # File server (for direct file access)
+```
 
-- **URL**: Your configured hostname or localhost:8080
-- **Email**: As configured in `SEAFILE_ADMIN_EMAIL`
-- **Password**: As configured in `SEAFILE_ADMIN_PASSWORD`
+### Via Port Forwarding (Testing)
+```bash
+kubectl port-forward -n seafile svc/seafile 8080:8000
+# Access at http://localhost:8080
+```
+
+### Via Cloudflare Tunnel (Production)
+If using Cloudflare Tunnel, configure:
+- `seafile.yourdomain.com` → `http://192.168.100.50:31223`
+- `seafilefiles.yourdomain.com` → `http://192.168.100.50:31224`
+
+**Note**: Cloudflare free plan limits file uploads to 100MB. For larger files, use direct access or upgrade your Cloudflare plan.
+
+## First Login
+- **URL**: `http://NODE-IP:31223` or `https://seafile.yourdomain.com`
+- **Email**: Your configured admin email
+- **Password**: Your configured admin password
 
 **Important**: Change the admin password after first login!
+
+## Automated Setup Features
+
+The deployment includes automated setup that:
+- Installs required packages (nano, sqlite3, net-tools)
+- Detects and configures Seafile server directory
+- Sets up SQLite database
+- Configures Seahub to bind to all interfaces (0.0.0.0:8000)
+- Creates admin account using provided credentials
+- Configures custom domain settings and CSRF protection
+- Monitors and automatically restarts services if they crash
 
 ## Troubleshooting
 
 ### Check Pod Status
 ```bash
 kubectl get pods -n seafile
-kubectl describe pod <pod-name> -n seafile
-kubectl logs <pod-name> -n seafile
+kubectl describe pod -n seafile <pod-name>
+kubectl logs -f deployment/seafile -n seafile
 ```
 
-### Check Storage
+### Access Container for Debugging
 ```bash
-kubectl get pv
-kubectl get pvc -n seafile
+kubectl exec -it -n seafile deployment/seafile -- bash
+
+# Check services
+cd /opt/seafile/seafile-server-*
+./seafile.sh status
+./seahub.sh status
+
+# Check network binding
+netstat -tlnp | grep -E "(8000|8082)"
+
+# Check configuration
+cat /opt/seafile/conf/seahub_settings.py
+cat /opt/seafile/conf/gunicorn.conf.py
 ```
 
 ### Common Issues
 
-1. **Pods stuck in Pending**: Check node affinity and storage availability
-2. **Seafile won't start**: Ensure MySQL is ready first
-3. **Permission errors**: Verify directory ownership on the host
-4. **Database connection issues**: Check passwords match between secret and configmap
+1. **Interface not accessible**: 
+   - Ensure gunicorn is binding to 0.0.0.0:8000
+   - Check `netstat -tlnp | grep 8000` shows `0.0.0.0:8000`
 
-### Reset Everything
+2. **Large file uploads fail**:
+   - Cloudflare free plan limits to 100MB
+   - Use direct IP access or port forwarding for larger files
+
+3. **Pod keeps restarting**:
+   - Check logs for errors
+   - Ensure storage permissions are correct
+   - Verify PV path exists on the node
+
+4. **Login fails**:
+   - Verify secret was created correctly
+   - Check admin credentials in pod environment
+
+## Maintenance
+
+### Update Configuration
 ```bash
-kubectl delete namespace seafile
-# Clean up local directories if needed
-sudo rm -rf /home/k8svolumes/seafile/mounted_volume/*
+# Edit ConfigMap
+kubectl edit configmap seafile-setup-script -n seafile
+
+# Restart deployment
+kubectl rollout restart deployment/seafile -n seafile
 ```
 
-## Security Considerations
-
-- Change all default passwords before production use
-- Use TLS/HTTPS in production (configure in ingress)
-- Consider using sealed secrets or external secret management
-- Regularly backup your data directory
-- Keep Seafile updated to latest stable version
-
-## Backup Strategy
-
-Your data is stored in `/home/k8svolumes/seafile/mounted_volume/`. To backup:
-
+### Backup Strategy
 ```bash
-# Stop Seafile first
-./stop-seafile.sh
+# Scale down deployment
+kubectl scale deployment seafile --replicas=0 -n seafile
 
 # Backup data
 sudo tar -czf seafile-backup-$(date +%Y%m%d).tar.gz /home/k8svolumes/seafile/mounted_volume/
 
-# Start Seafile
-./start-seafile.sh
+# Scale back up
+kubectl scale deployment seafile --replicas=1 -n seafile
 ```
 
-## Contributing
+### Update Seafile Version
+Update the image tag in `06-seafile-deployment.yaml`:
+```yaml
+image: seafileltd/seafile-mc:latest  # or specific version
+```
 
-Feel free to submit issues and pull requests to improve this deployment configuration.
+## Security Considerations
 
-## License
+- Change default admin credentials immediately
+- Use strong passwords
+- Consider using HTTPS via Ingress or reverse proxy
+- Restrict NodePort access via firewall rules
+- Regularly backup your data
+- Keep Seafile updated to latest stable version
 
-This configuration is provided as-is. Seafile itself is licensed under its own terms - see the [Seafile website](https://www.seafile.com/) for details.
+## Large File Upload Solutions
+
+Since Cloudflare free plan limits uploads to 100MB:
+
+1. **Temporary Port Forward**:
+   ```bash
+   # Configure router to forward port 31223 to your node
+   # Upload via http://YOUR-PUBLIC-IP:31223
+   # Remove port forward when done
+   ```
+
+2. **kubectl Port Forward**:
+   ```bash
+   kubectl port-forward -n seafile svc/seafile 8888:8000
+   # Upload via http://localhost:8888
+   ```
+
+3. **Tailscale VPN**:
+   ```bash
+   # Install Tailscale on your Kubernetes node
+   curl -fsSL https://tailscale.com/install.sh | sh
+   sudo tailscale up
+   # Access via Tailscale IP without port forwarding
+   ```
+
+## Clean Uninstall
+```bash
+# Delete namespace (removes everything)
+kubectl delete namespace seafile
+
+# Clean up local storage
+sudo rm -rf /home/k8svolumes/seafile/mounted_volume/*
+```
 
 ## Support
 
 - [Seafile Documentation](https://manual.seafile.com/)
 - [Seafile Community Forum](https://forum.seafile.com/)
 - [Kubernetes Documentation](https://kubernetes.io/docs/)
+
+## License
+
+This configuration is provided as-is. Seafile itself is licensed under its own terms - see the [Seafile website](https://www.seafile.com/) for details.
 
 ---
 

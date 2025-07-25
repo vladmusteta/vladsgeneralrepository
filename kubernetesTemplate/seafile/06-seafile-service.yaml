@@ -11,7 +11,7 @@ spec:
     port: 8000
     targetPort: 8000
     nodePort: 31223
-  - name: https
+  - name: fileserver
     port: 8082
     targetPort: 8082
     nodePort: 31224  
