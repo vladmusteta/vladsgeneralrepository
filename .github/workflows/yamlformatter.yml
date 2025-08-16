@@ -1,0 +1,70 @@
+name: YAML Formatter
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'reponame/kubernetesTemplate/**/*.yaml'
+      - 'reponame/kubernetesTemplate/**/*.yml'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - 'reponame/kubernetesTemplate/**/*.yaml'
+      - 'reponame/kubernetesTemplate/**/*.yml'
+  workflow_dispatch: # Allows manual triggering
+    inputs:
+      target_directory:
+        description: 'Directory to format (default: reponame/kubernetesTemplate)'
+        required: false
+        default: 'reponame/kubernetesTemplate'
+        type: string
+
+jobs:
+  format-yaml:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.ACTION_TOKEN }}
+        fetch-depth: 0
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install prettier
+      run: npm install -g prettier
+
+    - name: Format YAML files
+      run: |
+        # Use input directory if provided via manual trigger, otherwise use default
+        TARGET_DIR="${{ github.event.inputs.target_directory || 'reponame/kubernetesTemplate' }}"
+        echo "Formatting YAML files in: $TARGET_DIR"
+        
+        # Find and format all YAML files in the specified directory
+        find "$TARGET_DIR" -name "*.yaml" -o -name "*.yml" | while read file; do
+          echo "Formatting: $file"
+          prettier --write "$file" --parser yaml
+        done
+
+    - name: Check for changes
+      id: verify-changed-files
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "changed=true" >> $GITHUB_OUTPUT
+        else
+          echo "changed=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Commit and push changes
+      if: steps.verify-changed-files.outputs.changed == 'true'
+      run: |
+        TARGET_DIR="${{ github.event.inputs.target_directory || 'reponame/kubernetesTemplate' }}"
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add "$TARGET_DIR"
+        git commit -m "Auto-format YAML files in $TARGET_DIR directory"
+        git push
