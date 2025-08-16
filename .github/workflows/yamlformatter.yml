@@ -53,17 +53,14 @@ jobs:
           echo "Formatting: $file"
           if prettier --write "$file" --parser yaml; then
             echo "✅ Successfully formatted: $file"
-            ((SUCCESS_COUNT++))
+            SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
           else
             echo "❌ Failed to format: $file"
-            ((FAIL_COUNT++))
+            FAIL_COUNT=$((FAIL_COUNT + 1))
           fi
         done
         
         echo "Formatting complete. Success: $SUCCESS_COUNT, Failed: $FAIL_COUNT"
-        
-        # Continue even if some files failed to format
-        exit 0
 
     - name: Check for changes
       id: verify-changed-files
