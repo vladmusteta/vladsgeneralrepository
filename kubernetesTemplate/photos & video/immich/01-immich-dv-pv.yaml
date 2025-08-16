@@ -7,10 +7,10 @@ metadata:
     app: immich-postgresql
 spec:
   capacity:
-    storage: 10Gi # Adjust the storage size as needed
+    storage: 10Gi  # Adjust the storage size as needed
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: /home/k8svolumes/immich/mounted_storage/db # Path on the local node
-    type: DirectoryOrCreate # This ensures the directory will be created if it does not exist
+    path: /home/k8svolumes/immich/mounted_storage/db  # Path on the local node
+    type: DirectoryOrCreate     # This ensures the directory will be created if it does not exist
   persistentVolumeReclaimPolicy: Retain

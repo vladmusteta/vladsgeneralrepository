@@ -8,7 +8,7 @@ data:
     device_name: "Kubernetes-GoLibrespot"
     device_type: "speaker"
     log_level: "info"
-
+    
     audio:
       format: "S16LE"
       bitrate: 320
@@ -16,19 +16,19 @@ data:
       initial_volume: 50
       normalisation: true
       normalisation_pregain: 0.0
-
+    
     discovery:
       port: 57621
       disable_audio: false
-
+    
     server:
       enabled: true
       port: 24879
       address: "0.0.0.0"
-
+    
     # Use zeroconf for authentication
     credentials:
       type: zeroconf
-
+    
     zeroconf:
       persist_credentials: true

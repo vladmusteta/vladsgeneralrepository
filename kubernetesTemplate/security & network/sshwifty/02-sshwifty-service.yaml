@@ -7,7 +7,7 @@ spec:
   selector:
     app: sshwifty
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8182
+  - protocol: TCP
+    port: 80
+    targetPort: 8182
   type: NodePort

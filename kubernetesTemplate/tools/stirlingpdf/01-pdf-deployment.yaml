@@ -20,7 +20,7 @@ spec:
             - containerPort: 8080
           env:
             - name: ENABLE_OCR
-              value: "true" # Optional environment variable
+              value: "true"   # Optional environment variable
           resources:
             requests:
               cpu: "250m"

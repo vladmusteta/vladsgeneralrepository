@@ -14,69 +14,69 @@ spec:
         app: seafile
     spec:
       containers:
-        - name: seafile
-          image: seafileltd/seafile-mc:latest
-          command: ["/bin/bash"]
-          args:
-            - -c
-            - |
-              # Run our setup script directly - no need to wait
-              /scripts/setup.sh
-
-              # Keep services running and container alive
-              while true; do
-                sleep 30
-                # Check if services are running and restart if needed
-                cd /opt/seafile/seafile-server-* 2>/dev/null || continue
-                pgrep -f seafile-controller || ./seafile.sh start
-                pgrep -f seahub || ./seahub.sh start
-              done
-          env:
-            # From ConfigMap
-            - name: TIME_ZONE
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-config
-                  key: TIME_ZONE
-            - name: SEAFILE_SERVER_HOSTNAME
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-config
-                  key: SEAFILE_SERVER_HOSTNAME
-            # From Secret
-            - name: SEAFILE_ADMIN_EMAIL
-              valueFrom:
-                secretKeyRef:
-                  name: seafile-admin-secret
-                  key: SEAFILE_ADMIN_EMAIL
-            - name: SEAFILE_ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: seafile-admin-secret
-                  key: SEAFILE_ADMIN_PASSWORD
-          ports:
-            - containerPort: 8000
-              name: seahub
-            - containerPort: 8082
-              name: fileserver
-          volumeMounts:
-            - name: seafile-data
-              mountPath: /shared
-            - name: setup-script
-              mountPath: /scripts
-          # Note: /opt/seafile is part of the container image, not a volume
-          resources:
-            requests:
-              memory: "512Mi"
-              cpu: "250m"
-            limits:
-              memory: "1Gi"
-              cpu: "500m"
-      volumes:
+      - name: seafile
+        image: seafileltd/seafile-mc:latest
+        command: ["/bin/bash"]
+        args: 
+        - -c
+        - |
+          # Run our setup script directly - no need to wait
+          /scripts/setup.sh
+          
+          # Keep services running and container alive
+          while true; do
+            sleep 30
+            # Check if services are running and restart if needed
+            cd /opt/seafile/seafile-server-* 2>/dev/null || continue
+            pgrep -f seafile-controller || ./seafile.sh start
+            pgrep -f seahub || ./seahub.sh start
+          done
+        env:
+        # From ConfigMap
+        - name: TIME_ZONE
+          valueFrom:
+            configMapKeyRef:
+              name: seafile-config
+              key: TIME_ZONE
+        - name: SEAFILE_SERVER_HOSTNAME
+          valueFrom:
+            configMapKeyRef:
+              name: seafile-config
+              key: SEAFILE_SERVER_HOSTNAME
+        # From Secret
+        - name: SEAFILE_ADMIN_EMAIL
+          valueFrom:
+            secretKeyRef:
+              name: seafile-admin-secret
+              key: SEAFILE_ADMIN_EMAIL
+        - name: SEAFILE_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: seafile-admin-secret
+              key: SEAFILE_ADMIN_PASSWORD
+        ports:
+        - containerPort: 8000
+          name: seahub
+        - containerPort: 8082
+          name: fileserver
+        volumeMounts:
         - name: seafile-data
-          persistentVolumeClaim:
-            claimName: seafile-pvc
+          mountPath: /shared
         - name: setup-script
-          configMap:
-            name: seafile-setup-script
-            defaultMode: 0755
+          mountPath: /scripts
+        # Note: /opt/seafile is part of the container image, not a volume
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+      volumes:
+      - name: seafile-data
+        persistentVolumeClaim:
+          claimName: seafile-pvc
+      - name: setup-script
+        configMap:
+          name: seafile-setup-script
+          defaultMode: 0755

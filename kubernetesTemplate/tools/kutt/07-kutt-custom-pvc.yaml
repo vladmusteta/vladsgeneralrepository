@@ -8,5 +8,5 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi # This must match the size defined in the PV
-  storageClassName: standard # Ensure this matches the PV storage class
+      storage: 1Gi  # This must match the size defined in the PV
+  storageClassName: standard  # Ensure this matches the PV storage class

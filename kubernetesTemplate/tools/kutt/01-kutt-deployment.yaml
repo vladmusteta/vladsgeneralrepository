@@ -16,7 +16,7 @@ spec:
       initContainers:
         - name: migrate
           image: kutt/kutt
-          command: ["npm", "run", "migrate"] # Run the migrations before the main container starts
+          command: ["npm", "run", "migrate"]  # Run the migrations before the main container starts
           envFrom:
             - configMapRef:
                 name: kutt-config
@@ -40,3 +40,4 @@ spec:
         - name: custom
           persistentVolumeClaim:
             claimName: kutt-custom-pvc
+

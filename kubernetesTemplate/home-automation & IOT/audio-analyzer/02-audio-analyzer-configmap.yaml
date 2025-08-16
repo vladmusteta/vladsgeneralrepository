@@ -11,7 +11,7 @@ data:
     import paho.mqtt.client as mqtt
     import os
     import struct
-
+    
     def analyze_real_audio():
         print("Starting real audio analyzer...")
         client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
@@ -114,7 +114,7 @@ data:
             print(f"Failed to open audio stream: {e}")
             print("Falling back to enhanced test data")
             generate_enhanced_test_data(client)
-
+    
     def generate_enhanced_test_data(client):
         print("Generating enhanced test data with music-like patterns...")
         counter = 0
@@ -146,6 +146,6 @@ data:
                 print(f"Enhanced test: bass={bass:.1f}, mids={mids:.1f}, treble={treble:.1f}, beat={beat}")
             
             time.sleep(0.05)  # 20 Hz
-
+    
     if __name__ == "__main__":
         analyze_real_audio()

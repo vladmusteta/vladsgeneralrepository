@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: kutt-server
-  namespace: urlshort # Ensure it's in the same namespace as your Deployment
+  namespace: urlshort  # Ensure it's in the same namespace as your Deployment
 spec:
   selector:
     app: kutt
@@ -11,4 +11,4 @@ spec:
       port: 3000
       targetPort: 3000
   # Depending on how you want to expose it, choose one of these:
-  type: NodePort # Use LoadBalancer for external access, or use NodePort/ClusterIP
+  type: NodePort  # Use LoadBalancer for external access, or use NodePort/ClusterIP

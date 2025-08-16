@@ -39,3 +39,4 @@ spec:
           emptyDir: {}
         - name: mosquitto-log
           emptyDir: {}
+

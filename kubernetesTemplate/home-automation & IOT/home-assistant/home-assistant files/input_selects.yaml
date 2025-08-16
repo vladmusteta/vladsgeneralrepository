@@ -2,7 +2,7 @@ audio_lighting_mode:
   name: "Audio Lighting Mode"
   options:
     - "Party Mode"
-    - "Ambient Mode"
+    - "Ambient Mode" 
     - "Study Mode"
     - "Adaptive Light"
     - "Auto Genre"

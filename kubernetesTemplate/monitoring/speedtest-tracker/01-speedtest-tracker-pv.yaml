@@ -7,6 +7,6 @@ spec:
     storage: 1Gi
   accessModes:
     - ReadWriteOnce
-  storageClassName: speedtest-pv # ← must match PVC’s storageClassName (or omit both)
+  storageClassName: speedtest-pv   # ← must match PVC’s storageClassName (or omit both)
   hostPath:
-    path: /home/k8svolumes/speedtest-tracker/shared_volume/data # ← ensure this directory exists on the node
+    path: /home/k8svolumes/speedtest-tracker/shared_volume/data   # ← ensure this directory exists on the node

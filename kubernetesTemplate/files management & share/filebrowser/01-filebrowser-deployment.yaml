@@ -14,14 +14,14 @@ spec:
         app: filebrowser
     spec:
       containers:
-        - name: filebrowser
-          image: filebrowser/filebrowser:latest
-          ports:
-            - containerPort: 80
-          volumeMounts:
-            - name: file-storage
-              mountPath: /srv
-      volumes:
+      - name: filebrowser
+        image: filebrowser/filebrowser:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
         - name: file-storage
-          persistentVolumeClaim:
-            claimName: filebrowser-pvc
+          mountPath: /srv
+      volumes:
+      - name: file-storage
+        persistentVolumeClaim:
+          claimName: filebrowser-pvc

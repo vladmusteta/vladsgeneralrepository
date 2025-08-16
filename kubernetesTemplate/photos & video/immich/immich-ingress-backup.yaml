@@ -8,17 +8,17 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   rules:
-    - host: immich.vladsdomain.live
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: immich-server
-                port:
-                  number: 2283
+  - host: immich.vladsdomain.live
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: immich-server
+            port:
+              number: 2283
   tls:
-    - hosts:
-        - immich.vladsdomain.live
-      secretName: immich-tls
+  - hosts:
+    - immich.vladsdomain.live
+    secretName: immich-tls

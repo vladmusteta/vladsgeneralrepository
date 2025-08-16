@@ -14,25 +14,25 @@ spec:
         app: grafana
     spec:
       containers:
-        - name: grafana
-          image: grafana/grafana:latest
-          ports:
-            - containerPort: 3000
-          env:
-            - name: GF_SECURITY_ADMIN_USER
-              valueFrom:
-                secretKeyRef:
-                  name: grafana-admin-creds
-                  key: admin-user
-            - name: GF_SECURITY_ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: grafana-admin-creds
-                  key: admin-password
-          volumeMounts:
-            - name: grafana-storage
-              mountPath: /var/lib/grafana
-      volumes:
+      - name: grafana
+        image: grafana/grafana:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: GF_SECURITY_ADMIN_USER
+          valueFrom:
+            secretKeyRef:
+              name: grafana-admin-creds
+              key: admin-user
+        - name: GF_SECURITY_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: grafana-admin-creds
+              key: admin-password
+        volumeMounts:
         - name: grafana-storage
-          persistentVolumeClaim:
-            claimName: grafana-pvc
+          mountPath: /var/lib/grafana
+      volumes:
+      - name: grafana-storage
+        persistentVolumeClaim:
+          claimName: grafana-pvc

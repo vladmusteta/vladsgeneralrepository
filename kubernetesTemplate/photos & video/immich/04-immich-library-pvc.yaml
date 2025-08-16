@@ -10,6 +10,6 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 100Gi # Match the PV's capacity of 100Gi
-  volumeName: immich-library-pv # Bind explicitly to the PV created above
-  storageClassName: ""
+      storage: 100Gi  # Match the PV's capacity of 100Gi
+  volumeName: immich-library-pv  # Bind explicitly to the PV created above
+  storageClassName: ''

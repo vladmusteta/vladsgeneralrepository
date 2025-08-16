@@ -18,3 +18,4 @@ spec:
                 name: immich-server
                 port:
                   number: 2283
+

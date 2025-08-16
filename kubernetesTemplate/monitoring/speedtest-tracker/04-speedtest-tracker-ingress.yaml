@@ -4,7 +4,7 @@ metadata:
   name: speedtest-tracker
   namespace: monitoring
 spec:
-  ingressClassName: nginx # ← replace the annotation with this
+  ingressClassName: nginx                # ← replace the annotation with this
   rules:
     - host: speedtest.vladsdomain.live
       http:

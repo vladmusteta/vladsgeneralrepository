@@ -12,5 +12,5 @@ spec:
     - port: 8080
       targetPort: 8080
       protocol: TCP
-      nodePort: 31080 # within the default allowed range
+      nodePort: 31080  # within the default allowed range
   type: NodePort

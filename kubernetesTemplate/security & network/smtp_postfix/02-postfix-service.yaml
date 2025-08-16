@@ -10,4 +10,4 @@ spec:
     - protocol: TCP
       port: 25
       targetPort: 25
-  type: NodePort # You can change this to NodePort or LoadBalancer if you need external access
+  type: NodePort  # You can change this to NodePort or LoadBalancer if you need external access
