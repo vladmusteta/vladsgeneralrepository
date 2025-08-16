@@ -44,11 +44,26 @@ jobs:
         TARGET_DIR="${{ github.event.inputs.target_directory || 'kubernetesTemplate' }}"
         echo "Formatting YAML files in: $TARGET_DIR"
         
+        # Initialize counters
+        SUCCESS_COUNT=0
+        FAIL_COUNT=0
+        
         # Find and format all YAML files in the specified directory
         find "$TARGET_DIR" -name "*.yaml" -o -name "*.yml" | while read file; do
           echo "Formatting: $file"
-          prettier --write "$file" --parser yaml
+          if prettier --write "$file" --parser yaml; then
+            echo "✅ Successfully formatted: $file"
+            ((SUCCESS_COUNT++))
+          else
+            echo "❌ Failed to format: $file"
+            ((FAIL_COUNT++))
+          fi
         done
+        
+        echo "Formatting complete. Success: $SUCCESS_COUNT, Failed: $FAIL_COUNT"
+        
+        # Continue even if some files failed to format
+        exit 0
 
     - name: Check for changes
       id: verify-changed-files
@@ -65,6 +80,34 @@ jobs:
         TARGET_DIR="${{ github.event.inputs.target_directory || 'kubernetesTemplate' }}"
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
+        
+        # Add all changes, even if some files failed to format
         git add "$TARGET_DIR"
-        git commit -m "Auto-format YAML files in $TARGET_DIR directory"
-        git push
+        
+        # Commit with error handling
+        if git commit -m "Auto-format YAML files in $TARGET_DIR directory"; then
+          echo "✅ Successfully committed changes"
+        else
+          echo "❌ Failed to commit changes"
+          exit 1
+        fi
+        
+        # Push with retry logic
+        max_retries=3
+        retry_count=0
+        
+        while [ $retry_count -lt $max_retries ]; do
+          if git push; then
+            echo "✅ Successfully pushed changes"
+            break
+          else
+            retry_count=$((retry_count + 1))
+            echo "❌ Push attempt $retry_count failed. Retrying..."
+            if [ $retry_count -lt $max_retries ]; then
+              sleep 2
+            else
+              echo "❌ Failed to push after $max_retries attempts"
+              exit 1
+            fi
+          fi
+        done
