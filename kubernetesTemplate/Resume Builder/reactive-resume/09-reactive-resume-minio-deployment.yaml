@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reactive-resume-minio
+  namespace: reactive-resume
+  labels:
+    app: reactive-resume-minio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reactive-resume-minio
+  template:
+    metadata:
+      labels:
+        app: reactive-resume-minio
+    spec:
+      containers:
+      - name: minio
+        image: minio/minio:latest
+        command:
+        - minio
+        - server
+        - /data
+        ports:
+        - containerPort: 9000
+        env:
+        - name: MINIO_ROOT_USER
+          valueFrom:
+            secretKeyRef:
+              name: reactive-resume-minio-secret
+              key: MINIO_ROOT_USER
+        - name: MINIO_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: reactive-resume-minio-secret
+              key: MINIO_ROOT_PASSWORD
+        volumeMounts:
+        - name: minio-storage
+          mountPath: /data
+        livenessProbe:
+          httpGet:
+            path: /minio/health/live
+            port: 9000
+          initialDelaySeconds: 30
+          periodSeconds: 20
+          timeoutSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /minio/health/ready
+            port: 9000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+      volumes:
+      - name: minio-storage
+        persistentVolumeClaim:
+          claimName: reactive-resume-minio-pvc
+      restartPolicy: Always

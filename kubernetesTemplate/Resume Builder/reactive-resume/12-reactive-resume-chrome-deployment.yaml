@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reactive-resume-chrome
+  namespace: reactive-resume
+  labels:
+    app: reactive-resume-chrome
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reactive-resume-chrome
+  template:
+    metadata:
+      labels:
+        app: reactive-resume-chrome
+    spec:
+      containers:
+      - name: chrome
+        image: ghcr.io/browserless/chromium:v2.18.0
+        ports:
+        - containerPort: 3000
+        env:
+        - name: TIMEOUT
+          value: "10000"
+        - name: CONCURRENT
+          value: "10"
+        - name: TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: reactive-resume-chrome-secret
+              key: TOKEN
+        - name: EXIT_ON_HEALTH_FAILURE
+          value: "true"
+        - name: PRE_REQUEST_HEALTH_CHECK
+          value: "true"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+      restartPolicy: Always
