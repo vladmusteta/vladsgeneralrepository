@@ -4,19 +4,19 @@ on:
   push:
     branches: [ main, master ]
     paths:
-      - 'reponame/kubernetesTemplate/**/*.yaml'
-      - 'reponame/kubernetesTemplate/**/*.yml'
+      - 'kubernetesTemplate/**/*.yaml'
+      - 'kubernetesTemplate/**/*.yml'
   pull_request:
     branches: [ main, master ]
     paths:
-      - 'reponame/kubernetesTemplate/**/*.yaml'
-      - 'reponame/kubernetesTemplate/**/*.yml'
+      - 'kubernetesTemplate/**/*.yaml'
+      - 'kubernetesTemplate/**/*.yml'
   workflow_dispatch: # Allows manual triggering
     inputs:
       target_directory:
-        description: 'Directory to format (default: reponame/kubernetesTemplate)'
+        description: 'Directory to format (default: kubernetesTemplate)'
         required: false
-        default: 'reponame/kubernetesTemplate'
+        default: 'kubernetesTemplate'
         type: string
 
 jobs:
@@ -41,7 +41,7 @@ jobs:
     - name: Format YAML files
       run: |
         # Use input directory if provided via manual trigger, otherwise use default
-        TARGET_DIR="${{ github.event.inputs.target_directory || 'reponame/kubernetesTemplate' }}"
+        TARGET_DIR="${{ github.event.inputs.target_directory || 'kubernetesTemplate' }}"
         echo "Formatting YAML files in: $TARGET_DIR"
         
         # Find and format all YAML files in the specified directory
@@ -62,7 +62,7 @@ jobs:
     - name: Commit and push changes
       if: steps.verify-changed-files.outputs.changed == 'true'
       run: |
-        TARGET_DIR="${{ github.event.inputs.target_directory || 'reponame/kubernetesTemplate' }}"
+        TARGET_DIR="${{ github.event.inputs.target_directory || 'kubernetesTemplate' }}"
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add "$TARGET_DIR"
