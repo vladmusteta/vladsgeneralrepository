@@ -10,7 +10,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: manual
   hostPath:
-    path: /home/k8svolumes/audiobookshelf/config
+    path: /home/k8svolumes/audiobookshelf/config ## Change to the desired path
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -24,7 +24,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: manual
   hostPath:
-    path: /home/k8svolumes/audiobookshelf/audiobooks
+    path: /home/k8svolumes/audiobookshelf/audiobooks ## Change to the desired path
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -38,7 +38,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: manual
   hostPath:
-    path: /home/k8svolumes/audiobookshelf/podcasts
+    path: /home/k8svolumes/audiobookshelf/podcasts ## Change to the desired path
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -52,4 +52,5 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: manual
   hostPath:
-    path: /home/k8svolumes/audiobookshelf/metadata
+    path: /home/k8svolumes/audiobookshelf/metadata ## Change to the desired path
+    type: DirectoryOrCreate

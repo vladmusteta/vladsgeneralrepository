@@ -9,4 +9,5 @@ spec:
     - ReadWriteOnce
   storageClassName: manual
   hostPath:
-    path: /home/k8svolumes/affine/postgress/pgdata
+    path: /home/k8svolumes/affine/postgress/pgdata ## Change to the desired path
+    type: DirectoryOrCreate

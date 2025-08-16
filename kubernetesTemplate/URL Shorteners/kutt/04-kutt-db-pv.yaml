@@ -5,11 +5,12 @@ metadata:
   namespace: urlshort
 spec:
   capacity:
-    storage: 1Gi  # Adjust the size as needed
+    storage: 1Gi
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain  # You can change this to 'Delete' if needed
-  storageClassName: standard  # Ensure this matches your environment's storage class
+  persistentVolumeReclaimPolicy: Retain  
+  storageClassName: standard
   hostPath:
-    path: /home/k8svolumes/kutt/mounted_storage/db_data_sqlite  # Make sure this path exists and is accessible
+    path: /home/k8svolumes/kutt/mounted_storage/db_data_sqlite  ## Change to the desired path
+    type: DirectoryOrCreate

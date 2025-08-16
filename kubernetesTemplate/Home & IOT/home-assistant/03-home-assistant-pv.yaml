@@ -10,5 +10,5 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: manual
   hostPath:
-    path: "/home/k8svolumes/home-assistant"
+    path: "/home/k8svolumes/home-assistant" ## Change to the desired path
     type: DirectoryOrCreate

@@ -8,5 +8,6 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /home/k8svolumes/romm/mounted_volume/mariadb
+    path: /home/k8svolumes/romm/mounted_volume/mariadb ## Change to the desired path
+    type: DirectoryOrCreate
   persistentVolumeReclaimPolicy: Retain

@@ -9,5 +9,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /home/k8svolumes/pingvinshare/mounted_volume
+    path: /home/k8svolumes/pingvinshare/mounted_volume ## Change to the desired path
   persistentVolumeReclaimPolicy: Retain

@@ -11,4 +11,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/home/k8svolumes/nextcloud/mounted_volume"
+    path: "/home/k8svolumes/nextcloud/mounted_volume" ## Change to the desired path
+    type: DirectoryOrCreate

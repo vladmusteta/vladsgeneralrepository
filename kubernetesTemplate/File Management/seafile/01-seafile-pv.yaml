@@ -9,4 +9,5 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   hostPath:
-    path: /home/k8svolumes/seafile/mounted_volume/seafile
+    path: /home/k8svolumes/seafile/mounted_volume/seafile ## Change to the desired path
+    type: DirectoryOrCreate

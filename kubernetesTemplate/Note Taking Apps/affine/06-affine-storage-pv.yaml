@@ -9,4 +9,5 @@ spec:
     - ReadWriteOnce
   storageClassName: manual
   hostPath:
-    path: /home/k8svolumes/affine/storage
+    path: /home/k8svolumes/affine/storage ## Change to the desired path
+    type: DirectoryOrCreate

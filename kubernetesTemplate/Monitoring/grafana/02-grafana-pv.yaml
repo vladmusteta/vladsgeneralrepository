@@ -8,5 +8,6 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /home/k8svolumes/grafana/mounted_storage
+    path: /home/k8svolumes/grafana/mounted_storage ## Change to the desired path
+    type: DirectoryOrCreate
   persistentVolumeReclaimPolicy: Retain

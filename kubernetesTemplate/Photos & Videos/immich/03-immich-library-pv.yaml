@@ -11,6 +11,6 @@ spec:
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: /home/k8svolumes/immich/mounted_storage/library  # Local file path
-    type: DirectoryOrCreate  # Ensures the directory is created if it doesn't exist
+    path: /home/k8svolumes/immich/mounted_storage/library  ## Change to the desired path
+    type: DirectoryOrCreate
   persistentVolumeReclaimPolicy: Retain

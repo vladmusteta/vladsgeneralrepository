@@ -11,4 +11,5 @@ spec:
   storageClassName: manual
   volumeMode: Filesystem
   hostPath:
-    path: /home/k8svolumes/vscode/code-server
+    path: /home/k8svolumes/vscode/code-server ## Change to the desired path
+    type: DirectoryOrCreate

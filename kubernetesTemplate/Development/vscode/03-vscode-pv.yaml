@@ -11,5 +11,6 @@ spec:
   storageClassName: manual
   volumeMode: Filesystem
   hostPath:
-    path: /home/k8svolumes
+    path: /home/k8svolumes ## Change to the desired path
+    type: DirectoryOrCreate
 

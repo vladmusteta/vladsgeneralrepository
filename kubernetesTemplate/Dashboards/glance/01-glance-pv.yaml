@@ -9,5 +9,6 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /home/k8svolumes/glance/mounted_volume
+    path: /home/k8svolumes/glance/mounted_volume ## Change to the desired path
+    type: DirectoryOrCreate
   persistentVolumeReclaimPolicy: Retain
