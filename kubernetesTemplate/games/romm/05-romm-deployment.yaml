@@ -64,4 +64,3 @@ spec:
         - name: romm-config
           hostPath:
             path: /home/k8svolumes/romm/config
-

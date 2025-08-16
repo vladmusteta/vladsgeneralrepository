@@ -10,17 +10,17 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: grafana.vladsdomain.live
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: grafana
-            port:
-              number: 80
+    - host: grafana.vladsdomain.live
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: grafana
+                port:
+                  number: 80
   tls:
-  - hosts:
-    - grafana.vladsdomain.live
-    secretName: grafana-tls
+    - hosts:
+        - grafana.vladsdomain.live
+      secretName: grafana-tls

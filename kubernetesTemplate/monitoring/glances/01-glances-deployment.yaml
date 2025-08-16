@@ -39,4 +39,3 @@ spec:
         - name: etc
           hostPath:
             path: /etc
-

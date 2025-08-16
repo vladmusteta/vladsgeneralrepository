@@ -16,22 +16,22 @@ spec:
         app: go-librespot-web
     spec:
       containers:
-      - name: go-librespot-web
-        image: nginx:alpine
-        ports:
-        - containerPort: 80
-          name: http
-        volumeMounts:
-        - name: web-content
-          mountPath: /usr/share/nginx/html
-        resources:
-          requests:
-            memory: "32Mi"
-            cpu: "25m"
-          limits:
-            memory: "64Mi"
-            cpu: "50m"
+        - name: go-librespot-web
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+              name: http
+          volumeMounts:
+            - name: web-content
+              mountPath: /usr/share/nginx/html
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "25m"
+            limits:
+              memory: "64Mi"
+              cpu: "50m"
       volumes:
-      - name: web-content
-        configMap:
-          name: go-librespot-web-content
+        - name: web-content
+          configMap:
+            name: go-librespot-web-content

@@ -12,24 +12,24 @@ spec:
       labels:
         app: castsponsorskip
     spec:
-      hostNetwork: true  # This will allow the container to use the host's network
+      hostNetwork: true # This will allow the container to use the host's network
       containers:
-      - name: castsponsorskip
-        image: ghcr.io/gabe565/castsponsorskip
-        env:
-        - name: TZ
-          value: "UTC"
-        # Uncomment and set the following values if needed
-        # - name: CSS_PAUSED_INTERVAL
-        #   value: "<value>"
-        # - name: CSS_PLAYING_INTERVAL
-        #   value: "<value>"
-        # - name: CSS_CATEGORIES
-        #   value: "<value>"
-        # - name: CSS_YOUTUBE_API_KEY
-        #   value: "<value>"
-        # - name: CSS_MUTE_ADS
-        #   value: "<value>"
-        ports:
-        - containerPort: 80
+        - name: castsponsorskip
+          image: ghcr.io/gabe565/castsponsorskip
+          env:
+            - name: TZ
+              value: "UTC"
+          # Uncomment and set the following values if needed
+          # - name: CSS_PAUSED_INTERVAL
+          #   value: "<value>"
+          # - name: CSS_PLAYING_INTERVAL
+          #   value: "<value>"
+          # - name: CSS_CATEGORIES
+          #   value: "<value>"
+          # - name: CSS_YOUTUBE_API_KEY
+          #   value: "<value>"
+          # - name: CSS_MUTE_ADS
+          #   value: "<value>"
+          ports:
+            - containerPort: 80
       restartPolicy: Always

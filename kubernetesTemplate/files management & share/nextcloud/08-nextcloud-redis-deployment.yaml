@@ -14,11 +14,11 @@ spec:
         app: nextcloud-redis
     spec:
       containers:
-      - name: redis
-        image: redis:7-alpine
-        ports:
-        - containerPort: 6379
-        command:
-          - redis-server
-          - --maxmemory 512mb
-          - --maxmemory-policy allkeys-lru
+        - name: redis
+          image: redis:7-alpine
+          ports:
+            - containerPort: 6379
+          command:
+            - redis-server
+            - --maxmemory 512mb
+            - --maxmemory-policy allkeys-lru

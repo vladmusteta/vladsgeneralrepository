@@ -18,7 +18,11 @@ spec:
         - name: audio-analyzer
           image: python:3.11-slim
           command: ["/bin/bash"]
-          args: ["-c", "pip install paho-mqtt numpy && echo 'Packages installed, starting script...' && while true; do python /app/test.py; echo 'Script exited, restarting in 5 seconds...'; sleep 5; done"]
+          args:
+            [
+              "-c",
+              "pip install paho-mqtt numpy && echo 'Packages installed, starting script...' && while true; do python /app/test.py; echo 'Script exited, restarting in 5 seconds...'; sleep 5; done",
+            ]
           volumeMounts:
             - name: test-script
               mountPath: /app

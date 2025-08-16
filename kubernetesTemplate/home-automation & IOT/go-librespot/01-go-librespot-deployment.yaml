@@ -18,40 +18,40 @@ spec:
       # Use host network for mDNS discovery (like official compose)
       hostNetwork: true
       containers:
-      - name: go-librespot
-        image: ghcr.io/devgianlu/go-librespot
-        volumeMounts:
-        - name: go-librespot-config
-          mountPath: /config
-        - name: pulse-cookie
-          mountPath: /pulse_cookie
-          readOnly: true
-        - name: pulse-native
-          mountPath: /pulse_native
-        env:
-        - name: PULSE_SERVER
-          value: "unix:/pulse_native"
-        - name: PULSE_COOKIE
-          value: "/pulse_cookie"
-        resources:
-          requests:
-            memory: "128Mi"
-            cpu: "100m"
-          limits:
-            memory: "256Mi"
-            cpu: "200m"
-        securityContext:
-          runAsNonRoot: false
-          privileged: false
-        imagePullPolicy: Always
+        - name: go-librespot
+          image: ghcr.io/devgianlu/go-librespot
+          volumeMounts:
+            - name: go-librespot-config
+              mountPath: /config
+            - name: pulse-cookie
+              mountPath: /pulse_cookie
+              readOnly: true
+            - name: pulse-native
+              mountPath: /pulse_native
+          env:
+            - name: PULSE_SERVER
+              value: "unix:/pulse_native"
+            - name: PULSE_COOKIE
+              value: "/pulse_cookie"
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+          securityContext:
+            runAsNonRoot: false
+            privileged: false
+          imagePullPolicy: Always
       volumes:
-      - name: go-librespot-config
-        persistentVolumeClaim:
-          claimName: go-librespot-config-pvc
-      - name: pulse-cookie
-        persistentVolumeClaim:
-          claimName: pulse-cookie-pvc
-      - name: pulse-native
-        persistentVolumeClaim:
-          claimName: pulse-native-pvc
+        - name: go-librespot-config
+          persistentVolumeClaim:
+            claimName: go-librespot-config-pvc
+        - name: pulse-cookie
+          persistentVolumeClaim:
+            claimName: pulse-cookie-pvc
+        - name: pulse-native
+          persistentVolumeClaim:
+            claimName: pulse-native-pvc
       restartPolicy: Always

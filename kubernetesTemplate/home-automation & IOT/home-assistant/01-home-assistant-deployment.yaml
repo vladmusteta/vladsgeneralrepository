@@ -20,7 +20,7 @@ spec:
           effect: NoSchedule
       containers:
         - name: home-assistant
-          image: 'homeassistant/home-assistant:latest'
+          image: "homeassistant/home-assistant:latest"
           volumeMounts:
             - name: home-assistant-config
               mountPath: /config
@@ -29,10 +29,9 @@ spec:
               exec:
                 command:
                   - /bin/bash
-                  - '-c'
-                  - 'wget -O - https://get.hacs.xyz | bash'
+                  - "-c"
+                  - "wget -O - https://get.hacs.xyz | bash"
       volumes:
         - name: home-assistant-config
           persistentVolumeClaim:
             claimName: home-assistant-config
-

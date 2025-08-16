@@ -12,7 +12,7 @@ spec:
       containers:
         - name: migration
           image: ghcr.io/toeverything/affine-graphql:stable
-          command: ['sh', '-c', 'node ./scripts/self-host-predeploy.js']
+          command: ["sh", "-c", "node ./scripts/self-host-predeploy.js"]
           env:
             - name: REDIS_SERVER_HOST
               value: affine-redis

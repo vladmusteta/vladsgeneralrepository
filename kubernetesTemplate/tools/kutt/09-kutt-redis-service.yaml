@@ -10,4 +10,4 @@ spec:
     - protocol: TCP
       port: 6379
       targetPort: 6379
-  clusterIP: None  # Headless service to allow direct access between Kutt and Redis
+  clusterIP: None # Headless service to allow direct access between Kutt and Redis

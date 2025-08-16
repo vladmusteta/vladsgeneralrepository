@@ -4,14 +4,14 @@ metadata:
   name: mosquitto
   namespace: home-automation
 spec:
-  type: NodePort  # <- Add this line
+  type: NodePort # <- Add this line
   selector:
     app: mosquitto
   ports:
     - name: mqtt
       port: 1883
       targetPort: 1883
-      nodePort: 31883  # You can pick a port in range 30000–32767
+      nodePort: 31883 # You can pick a port in range 30000–32767
     - name: websocket
       port: 9001
       targetPort: 9001

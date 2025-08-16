@@ -7,7 +7,7 @@ spec:
   selector:
     app: selenium-chrome
   ports:
-  - port: 4444
-    targetPort: 4444
-    nodePort: 30479  # Choose a port between 30000-32767
+    - port: 4444
+      targetPort: 4444
+      nodePort: 30479 # Choose a port between 30000-32767
   type: NodePort

@@ -30,7 +30,7 @@ sensor:
 
 # Horoscope REST sensor
 rest:
-  - scan_interval: 3600  # Updates every hour
+  - scan_interval: 3600 # Updates every hour
     resource: https://hass-forum.ro/api/horoscop.php?zodiac=balanta
     sensor:
       - name: "Horoscop API Data"
@@ -40,7 +40,7 @@ rest:
           - date
           - horoscope
 input_select: !include input_selects.yaml
-input_boolean: !include input_booleans.yaml  
+input_boolean: !include input_booleans.yaml
 # Template sensors
 template:
   - sensor:
@@ -60,7 +60,7 @@ template:
           sign: "{{ state_attr('sensor.horoscop_api_data', 'sign') }}"
           date: "{{ state_attr('sensor.horoscop_api_data', 'date') }}"
           horoscope: "{{ state_attr('sensor.horoscop_api_data', 'horoscope') }}"
-      
+
       - name: "Music Energy Level"
         state: >
           {% set energy = states('sensor.audio_analyzer_over_mqtt_audio_energy') | float(0) %}

@@ -19,62 +19,62 @@ spec:
         seccompProfile:
           type: Unconfined
       containers:
-      - name: retroarch
-        image: lscr.io/linuxserver/retroarch:latest
-        ports:
-        - containerPort: 3000
-          name: web
-        - containerPort: 5900
-          name: vnc
-        env:
-        - name: PUID
-          valueFrom:
-            configMapKeyRef:
-              name: retroarch-config
-              key: PUID
-        - name: PGID
-          valueFrom:
-            configMapKeyRef:
-              name: retroarch-config
-              key: PGID
-        - name: TZ
-          valueFrom:
-            configMapKeyRef:
-              name: retroarch-config
-              key: TZ
-        - name: VNC_PASSWORD
-          valueFrom:
-            configMapKeyRef:
-              name: retroarch-config
-              key: VNC_PASSWORD
-        volumeMounts:
-        - name: retroarch-storage
-          mountPath: /config
-          subPath: config
-        - name: retroarch-storage
-          mountPath: /assets/cores
-          subPath: cores
-        - name: retroarch-storage
-          mountPath: /roms
-          subPath: roms
-        - name: retroarch-storage
-          mountPath: /saves
-          subPath: saves
-        - name: dshm
-          mountPath: /dev/shm
-        resources:
-          requests:
-            memory: "1Gi"
-            cpu: "500m"
-          limits:
-            memory: "4Gi"
-            cpu: "2000m"
+        - name: retroarch
+          image: lscr.io/linuxserver/retroarch:latest
+          ports:
+            - containerPort: 3000
+              name: web
+            - containerPort: 5900
+              name: vnc
+          env:
+            - name: PUID
+              valueFrom:
+                configMapKeyRef:
+                  name: retroarch-config
+                  key: PUID
+            - name: PGID
+              valueFrom:
+                configMapKeyRef:
+                  name: retroarch-config
+                  key: PGID
+            - name: TZ
+              valueFrom:
+                configMapKeyRef:
+                  name: retroarch-config
+                  key: TZ
+            - name: VNC_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: retroarch-config
+                  key: VNC_PASSWORD
+          volumeMounts:
+            - name: retroarch-storage
+              mountPath: /config
+              subPath: config
+            - name: retroarch-storage
+              mountPath: /assets/cores
+              subPath: cores
+            - name: retroarch-storage
+              mountPath: /roms
+              subPath: roms
+            - name: retroarch-storage
+              mountPath: /saves
+              subPath: saves
+            - name: dshm
+              mountPath: /dev/shm
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "500m"
+            limits:
+              memory: "4Gi"
+              cpu: "2000m"
       volumes:
-      - name: retroarch-storage
-        persistentVolumeClaim:
-          claimName: retroarch-storage
-      # Add shared memory for RetroArch
-      - name: dshm
-        emptyDir:
-          medium: Memory
-          sizeLimit: 1Gi
+        - name: retroarch-storage
+          persistentVolumeClaim:
+            claimName: retroarch-storage
+        # Add shared memory for RetroArch
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi

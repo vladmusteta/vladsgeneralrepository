@@ -7,22 +7,22 @@ data:
   setup.sh: |
     #!/bin/bash
     set -e
-    
+
     echo "=== Starting Seafile Setup Script ==="
     echo "=== Updating Repositories ==="
     apt-get update --fix-missing
     echo "=== Installing required packages ==="
     apt-get install -y nano sqlite3 net-tools --fix-missing
-    
+
     # Debug: Show directory structure
     echo "=== Checking directory structure ==="
     ls -la /opt/
     ls -la /opt/seafile/ || echo "No /opt/seafile directory yet"
     ls -la /shared/ || echo "No /shared directory"
-    
+
     # The seafile-server directory is in /opt/seafile
     SEAFILE_SERVER_DIR="/opt/seafile/seafile-server-11.0.13"
-    
+
     # Verify it exists
     if [ ! -d "$SEAFILE_SERVER_DIR" ]; then
         echo "Error: Seafile server directory not found at $SEAFILE_SERVER_DIR"
@@ -33,10 +33,10 @@ data:
             exit 1
         fi
     fi
-    
+
     echo "Found Seafile server directory: $SEAFILE_SERVER_DIR"
     cd "$SEAFILE_SERVER_DIR"
-    
+
     # Check if Seafile is already configured
     # Configuration will be stored in /shared but symlinked to /opt/seafile
     if [ ! -f /shared/conf/ccnet.conf ]; then
@@ -62,12 +62,12 @@ data:
     else
         echo "=== Seafile already configured, skipping setup ==="
     fi
-    
+
     # Create symlinks so config is accessible from both locations
     echo "=== Setting up configuration symlinks ==="
     mkdir -p /opt/seafile/conf
     mkdir -p /shared/conf
-    
+
     # Link configuration files if they don't exist in /opt/seafile/conf
     for conf_file in ccnet.conf seafile.conf seahub_settings.py gunicorn.conf.py; do
         if [ -f "/shared/conf/$conf_file" ] && [ ! -f "/opt/seafile/conf/$conf_file" ]; then
@@ -75,7 +75,7 @@ data:
             echo "Linked $conf_file"
         fi
     done
-    
+
     # Create gunicorn configuration in the correct location
     echo "=== Creating gunicorn configuration ==="
     cat > /opt/seafile/conf/gunicorn.conf.py << 'GUNICORNEND'
@@ -90,15 +90,15 @@ data:
         "DJANGO_SETTINGS_MODULE=seahub.settings",
     ]
     GUNICORNEND
-    
+
     # Also copy to shared for persistence
     cp /opt/seafile/conf/gunicorn.conf.py /shared/conf/gunicorn.conf.py 2>/dev/null || true
-    
+
     echo "=== Starting Seafile Services ==="
-    
+
     # Start Seafile
     ./seafile.sh start
-    
+
     # Check if admin user needs to be created
     if [ ! -f /shared/admin-created ]; then
         echo "=== Creating admin user ==="
@@ -115,13 +115,13 @@ data:
         echo "=== Admin user already created, starting Seahub normally ==="
         ./seahub.sh start
     fi
-    
+
     echo "=== Seafile services started successfully ==="
-    
+
     # Update seahub_settings.py with proper configuration
     echo "=== Verifying seahub_settings.py configuration ==="
     SEAHUB_SETTINGS="/opt/seafile/conf/seahub_settings.py"
-    
+
     if [ -f "$SEAHUB_SETTINGS" ]; then
         # Check if custom settings already exist
         if ! grep -q "CSRF_TRUSTED_ORIGINS" "$SEAHUB_SETTINGS"; then
@@ -149,10 +149,10 @@ data:
             echo "=== Custom settings already applied ==="
         fi
     fi
-    
+
     echo "=== Service status ==="
     netstat -tlnp | grep -E "(8000|8082)" || true
-    
+
     echo "=== Setup completed! ==="
     echo "Seafile is accessible at:"
     echo "  - http://192.168.100.50:31223 (NodePort)"

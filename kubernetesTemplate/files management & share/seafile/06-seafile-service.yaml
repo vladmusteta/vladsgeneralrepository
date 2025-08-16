@@ -7,12 +7,12 @@ spec:
   selector:
     app: seafile
   ports:
-  - name: http
-    port: 8000
-    targetPort: 8000
-    nodePort: 31223
-  - name: fileserver
-    port: 8082
-    targetPort: 8082
-    nodePort: 31224  
+    - name: http
+      port: 8000
+      targetPort: 8000
+      nodePort: 31223
+    - name: fileserver
+      port: 8082
+      targetPort: 8082
+      nodePort: 31224
   type: NodePort

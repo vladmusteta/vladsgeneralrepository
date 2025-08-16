@@ -12,4 +12,3 @@ spec:
   volumeMode: Filesystem
   hostPath:
     path: /home/k8svolumes
-

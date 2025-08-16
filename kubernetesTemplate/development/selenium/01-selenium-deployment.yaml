@@ -4,7 +4,7 @@ metadata:
   name: selenium-chrome
   namespace: selenium
 spec:
-  replicas: 1  # Start with just 1 for learning
+  replicas: 1 # Start with just 1 for learning
   selector:
     matchLabels:
       app: selenium-chrome
@@ -14,30 +14,30 @@ spec:
         app: selenium-chrome
     spec:
       containers:
-      - name: selenium-chrome
-        image: selenium/standalone-chrome:4.15.0
-        ports:
-        - containerPort: 4444
-        env:
-        - name: SE_SESSION_REQUEST_TIMEOUT
-          value: "300"
-        - name: SE_SESSION_RETRY_INTERVAL
-          value: "5"
-        # Optimize for older hardware
-        - name: SE_OPTS
-          value: "--session-timeout 300 --session-request-timeout 300"
-        resources:
-          requests:
-            memory: "512Mi"   # Reduced for older laptop
-            cpu: "250m"       # Reduced for older laptop
-          limits:
-            memory: "1Gi"     # Conservative limit
-            cpu: "500m"       # Conservative limit
-        volumeMounts:
-        - name: shm-volume
-          mountPath: /dev/shm
+        - name: selenium-chrome
+          image: selenium/standalone-chrome:4.15.0
+          ports:
+            - containerPort: 4444
+          env:
+            - name: SE_SESSION_REQUEST_TIMEOUT
+              value: "300"
+            - name: SE_SESSION_RETRY_INTERVAL
+              value: "5"
+            # Optimize for older hardware
+            - name: SE_OPTS
+              value: "--session-timeout 300 --session-request-timeout 300"
+          resources:
+            requests:
+              memory: "512Mi" # Reduced for older laptop
+              cpu: "250m" # Reduced for older laptop
+            limits:
+              memory: "1Gi" # Conservative limit
+              cpu: "500m" # Conservative limit
+          volumeMounts:
+            - name: shm-volume
+              mountPath: /dev/shm
       volumes:
-      - name: shm-volume
-        emptyDir:
-          medium: Memory
-          sizeLimit: 1Gi     # Reduced shared memory
+        - name: shm-volume
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi # Reduced shared memory

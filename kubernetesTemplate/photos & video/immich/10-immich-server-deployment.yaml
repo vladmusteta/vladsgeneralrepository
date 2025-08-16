@@ -57,4 +57,3 @@ spec:
             claimName: immich-library-pvc
       securityContext:
         fsGroup: 0
-

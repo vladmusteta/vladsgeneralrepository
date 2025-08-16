@@ -10,5 +10,5 @@ spec:
     - port: 80
       targetPort: 80
       protocol: TCP
-      nodePort: 30588  # You can change this to any port between 30000-32767
+      nodePort: 30588 # You can change this to any port between 30000-32767
   type: NodePort

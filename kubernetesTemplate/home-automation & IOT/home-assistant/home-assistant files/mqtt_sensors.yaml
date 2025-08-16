@@ -476,17 +476,17 @@
     identifiers:
       - audio_analyer_over_mqtt
     name: Audio Analyzer Over MQTT
-  
+
 - name: "Audio Mids"
   unique_id: sensor_audio_analyzer_mids
-  state_topic: "audio/analysis" 
+  state_topic: "audio/analysis"
   value_template: "{{ value_json.mids | round(2) }}"
   unit_of_measurement: "dB"
   device:
     identifiers:
       - audio_analyer_over_mqtt
     name: Audio Analyzer Over MQTT
-  
+
 - name: "Audio Treble"
   unique_id: sensor_audio_analyzer_treble
   state_topic: "audio/analysis"
@@ -496,7 +496,7 @@
     identifiers:
       - audio_analyer_over_mqtt
     name: Audio Analyzer Over MQTT
-  
+
 - name: "Audio Beat"
   unique_id: sensor_audio_analyzer_beat
   state_topic: "audio/analysis"
@@ -505,7 +505,7 @@
     identifiers:
       - audio_analyer_over_mqtt
     name: Audio Analyzer Over MQTT
-  
+
 - name: "Audio Energy"
   unique_id: sensor_audio_analyzer_energy
   state_topic: "audio/analysis"
@@ -515,4 +515,3 @@
     identifiers:
       - audio_analyer_over_mqtt
     name: Audio Analyzer Over MQTT
-

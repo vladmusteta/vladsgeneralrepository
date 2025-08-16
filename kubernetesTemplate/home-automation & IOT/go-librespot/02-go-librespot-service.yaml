@@ -10,8 +10,8 @@ spec:
     app: go-librespot
   type: NodePort
   ports:
-  - name: http-api
-    port: 24879
-    targetPort: 24879
-    nodePort: 30879
-    protocol: TCP
+    - name: http-api
+      port: 24879
+      targetPort: 24879
+      nodePort: 30879
+      protocol: TCP

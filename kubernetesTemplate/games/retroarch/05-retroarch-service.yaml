@@ -8,19 +8,19 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 3000
-    targetPort: 3000
-    nodePort: 31082
-    name: web-http
-    protocol: TCP
-  - port: 3001
-    targetPort: 3001
-    nodePort: 31083
-    name: web-https
-    protocol: TCP
-  - port: 5900
-    targetPort: 5900
-    name: vnc
-    protocol: TCP
+    - port: 3000
+      targetPort: 3000
+      nodePort: 31082
+      name: web-http
+      protocol: TCP
+    - port: 3001
+      targetPort: 3001
+      nodePort: 31083
+      name: web-https
+      protocol: TCP
+    - port: 5900
+      targetPort: 5900
+      name: vnc
+      protocol: TCP
   selector:
     app: retroarch
