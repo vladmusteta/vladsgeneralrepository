@@ -34,6 +34,8 @@ spec:
           value: "true"
         - name: PRE_REQUEST_HEALTH_CHECK
           value: "true"
+        securityContext:
+          privileged: true
         resources:
           requests:
             memory: "256Mi"

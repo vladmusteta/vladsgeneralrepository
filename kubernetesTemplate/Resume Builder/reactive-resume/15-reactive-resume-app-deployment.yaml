@@ -26,12 +26,12 @@ spec:
           value: "3000"
         - name: NODE_ENV
           value: "production"
-        # URLs - Update these with your actual server IP or domain
+        # URLs - REPLACE WITH YOUR ACTUAL SERVER IP OR DOMAIN
         - name: PUBLIC_URL
-          value: "http://[your-server-ip]:3000"
+          value: "http://[your-server-ip]:3000"  # Example IP - CHANGE THIS
         - name: STORAGE_URL
-          value: "http://[your-server-ip]:30900/default"
-        # Printer (Chrome)
+          value: "http://[your-server-ip]:30900/default"  # Example IP - CHANGE THIS
+        # Printer (Chrome) - Required environment variables
         - name: CHROME_TOKEN
           valueFrom:
             secretKeyRef:
@@ -81,6 +81,11 @@ spec:
         - name: STORAGE_USE_SSL
           value: "false"
         - name: STORAGE_SKIP_BUCKET_CHECK
+          value: "false"
+        # Enable signups for initial setup
+        - name: DISABLE_SIGNUPS
+          value: "false"
+        - name: DISABLE_EMAIL_AUTH
           value: "false"
         # -- Optional Features (uncomment and configure as needed) --
         # -- Crowdin (Optional) --
@@ -186,24 +191,3 @@ spec:
           periodSeconds: 10
           timeoutSeconds: 5
       restartPolicy: Always
-      initContainers:
-      - name: wait-for-postgres
-        image: postgres:16-alpine
-        command:
-        - /bin/sh
-        - -c
-        - |
-          until pg_isready -h reactive-resume-database -p 5432 -U postgres; do
-            echo "Waiting for postgres..."
-            sleep 2
-          done
-      - name: wait-for-minio
-        image: curlimages/curl:latest
-        command:
-        - /bin/sh
-        - -c
-        - |
-          until curl -f http://reactive-resume-minio:9000/minio/health/ready; do
-            echo "Waiting for minio..."
-            sleep 2
-          done
